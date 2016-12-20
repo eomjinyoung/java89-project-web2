@@ -1,5 +1,14 @@
 # java89-project-web2
 
+## 0.3 - 매니저 관리 기능 구현
+- domain 객체 구현
+  - Manager 클래스 구현
+- DAO 객체 구현
+  - ManagerMysqlDao 클래스 구현
+- 서블릿 객체 구현
+  - ManagerListServlet, ManagerAddServlet, ManagerDetailServlet, 
+    ManagerUpdateServlet, ManagerDeleteServlet 클래스 구현 
+        
 ## 0.2 - 학생 관리 기능 구현
 - 프로젝트 기본 패키지 준비
   - bitcamp.java89.ems2 패키지 생성
