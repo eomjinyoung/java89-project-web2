@@ -98,5 +98,39 @@ public class StudentMysqlDao implements StudentDao {
     } finally {
       ds.returnConnection(con);
     }
+  } 
+
+  public Student getOne(int memberNo) throws Exception {
+    Connection con = ds.getConnection(); 
+    try (
+      PreparedStatement stmt = con.prepareStatement(
+          "select name, tel, email, work, lst_schl, schl_nm, path"
+          + " from stud"
+          + " left outer join memb on stud.sno=memb.mno"
+          + " where mno=?");) {
+
+      stmt.setInt(1, memberNo);
+      ResultSet rs = stmt.executeQuery();
+
+      if (rs.next()) { // 서버에서 레코드 한 개를 가져왔다면,
+        Student student = new Student();
+        student.setMemberNo(memberNo);
+        student.setEmail(rs.getString("email"));
+        student.setName(rs.getString("name"));
+        student.setTel(rs.getString("tel"));
+        student.setWorking(rs.getString("work").equals("Y") ? true : false);
+        student.setGrade(rs.getString("lst_schl"));
+        student.setSchoolName(rs.getString("schl_nm"));
+        student.setPhotoPath(rs.getString("path"));
+        rs.close();
+        return student;
+        
+      } else {
+        rs.close();
+        return null;
+      }
+    } finally {
+      ds.returnConnection(con);
+    }
   }  
 }

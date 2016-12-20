@@ -50,7 +50,7 @@ public class StudentListServlet extends HttpServlet {
       for (Student student : list) {
         out.println("<tr> ");
         out.printf("  <td>%d</td>"
-            + "<td><a href='detail?mno=%1$d'>%s</a></td>"
+            + "<td><a href='detail?memberNo=%1$d'>%s</a></td>"
             + "<td>%s</td>"
             + "<td>%b</td>"
             + "<td>%s</td>"

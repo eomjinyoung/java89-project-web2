@@ -59,10 +59,11 @@ public class StudentAddServlet extends HttpServlet {
         memberDao.insert(student);
       }
       
-      //studentDao.insert(student);
+      studentDao.insert(student);
       out.println("<p>등록하였습니다.</p>");
       
     } catch (Exception e) {
+      e.printStackTrace();
       out.printf("<p>%s</p>\n", e.getMessage());
     }
     
