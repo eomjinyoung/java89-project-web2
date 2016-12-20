@@ -82,6 +82,32 @@ public class StudentMysqlDao implements StudentDao {
     }
   } 
   
+  public boolean exist(int memberNo) throws Exception {
+    Connection con = ds.getConnection(); // 커넥션풀에서 한 개의 Connection 객체를 임대한다.
+    try (
+      PreparedStatement stmt = con.prepareStatement(
+          "select count(*)"
+          + " from stud left outer join memb on stud.sno=memb.mno"
+          + " where sno=?"); ) {
+      
+      stmt.setInt(1, memberNo);
+      ResultSet rs = stmt.executeQuery();
+      
+      rs.next();
+      int count = rs.getInt(1);
+      rs.close();
+      
+      if (count > 0) {
+        return true;
+      } else {
+        return false;
+      }
+      
+    } finally {
+      ds.returnConnection(con);
+    }
+  } 
+  
   public void insert(Student student) throws Exception {
     Connection con = ds.getConnection(); // 커넥션풀에서 한 개의 Connection 객체를 임대한다.
     try (
@@ -132,5 +158,27 @@ public class StudentMysqlDao implements StudentDao {
     } finally {
       ds.returnConnection(con);
     }
-  }  
+  }
+  
+  public void update(Student student) throws Exception {
+    Connection con = ds.getConnection(); // 커넥션풀에서 한 개의 Connection 객체를 임대한다.
+    try (
+      PreparedStatement stmt = con.prepareStatement(
+          "update stud set"
+          + " work=?, lst_schl=?, schl_nm=?, path=?"
+          + " where sno=?"); ) {
+      
+      stmt.setString(1, student.isWorking() ? "Y" : "N");
+      stmt.setString(2, student.getGrade());
+      stmt.setString(3, student.getSchoolName());
+      stmt.setString(4, student.getPhotoPath());
+      stmt.setInt(5, student.getMemberNo());
+      
+      stmt.executeUpdate();
+      
+    } finally {
+      ds.returnConnection(con);
+    }
+  }
+ 
 }

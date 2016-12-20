@@ -62,11 +62,11 @@ public class StudentDetailServlet extends HttpServlet {
           (student.isWorking() ? "" : "checked"));
       out.println("<tr><th>최종학력</th><td>");
       out.println("<select name='grade'>");
-      out.printf("  <option value='고졸' %s>고졸</option>\n", student.getGrade().equals("고졸") ? "selected" : "");
-      out.printf("  <option value='전문학사' %s>전문학사</option>\n", student.getGrade().equals("전문학사") ? "selected" : "");
-      out.printf("  <option value='학사' %s>학사</option>\n", student.getGrade().equals("학사") ? "selected" : "");
-      out.printf("  <option value='석사' %s>석사</option>\n", student.getGrade().equals("석사") ? "selected" : "");
-      out.printf("  <option value='박사' %s>박사</option>\n", student.getGrade().equals("박사") ? "selected" : "");
+      out.printf("  <option value='고졸' %s>고졸</option>\n", "고졸".equals(student.getGrade()) ? "selected" : "");
+      out.printf("  <option value='전문학사' %s>전문학사</option>\n", "전문학사".equals(student.getGrade()) ? "selected" : "");
+      out.printf("  <option value='학사' %s>학사</option>\n", "학사".equals(student.getGrade()) ? "selected" : "");
+      out.printf("  <option value='석사' %s>석사</option>\n", "석사".equals(student.getGrade()) ? "selected" : "");
+      out.printf("  <option value='박사' %s>박사</option>\n", "박사".equals(student.getGrade()) ? "selected" : "");
       out.println("</select>");
       out.println("</td></tr>");
       out.printf("<tr><th>최종학교</th><td>"
@@ -89,4 +89,6 @@ public class StudentDetailServlet extends HttpServlet {
     out.println("</html>");
     
   }
+  
+  
 }
