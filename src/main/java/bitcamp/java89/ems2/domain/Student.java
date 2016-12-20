@@ -9,6 +9,7 @@ public class Student extends Member {
   protected String postNo;
   protected String basicAddress;
   protected String detailAddress;
+  protected String photoPath;
   
   public boolean isWorking() {
     return working;
@@ -45,6 +46,12 @@ public class Student extends Member {
   }
   public void setDetailAddress(String detailAddress) {
     this.detailAddress = detailAddress;
+  }
+  public String getPhotoPath() {
+    return photoPath;
+  }
+  public void setPhotoPath(String photoPath) {
+    this.photoPath = photoPath;
   }
   
   
