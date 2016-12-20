@@ -1,4 +1,4 @@
-package bitcamp.java89.ems2.servlet.student;
+package bitcamp.java89.ems2.servlet.manager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,8 +14,8 @@ import bitcamp.java89.ems2.dao.impl.MemberMysqlDao;
 import bitcamp.java89.ems2.dao.impl.StudentMysqlDao;
 import bitcamp.java89.ems2.dao.impl.TeacherMysqlDao;
 
-@WebServlet("/student/delete")
-public class StudentDeleteServlet extends HttpServlet {
+@WebServlet("/manager/delete")
+public class ManagerDeleteServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
@@ -32,25 +32,25 @@ public class StudentDeleteServlet extends HttpServlet {
     out.println("<html>");
     out.println("<head>");
     out.println("<meta charset='UTF-8'>");
-    out.println("<title>학생관리-삭제</title>");
+    out.println("<title>매니저관리-삭제</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>삭제 결과</h1>");
 
     try {
-      StudentMysqlDao studentDao = StudentMysqlDao.getInstance();
+      ManagerMysqlDao managerDao = ManagerMysqlDao.getInstance();
     
-      if (!studentDao.exist(memberNo)) {
-        throw new Exception("학생을 찾지 못했습니다.");
+      if (!managerDao.exist(memberNo)) {
+        throw new Exception("사용자를 찾지 못했습니다.");
       }
       
-      studentDao.delete(memberNo);
+      managerDao.delete(memberNo);
 
       MemberMysqlDao memberDao = MemberMysqlDao.getInstance();
-      ManagerMysqlDao managerDao = ManagerMysqlDao.getInstance();
+      StudentMysqlDao studentDao = StudentMysqlDao.getInstance();
       TeacherMysqlDao teacherDao = TeacherMysqlDao.getInstance();
       
-      if (!managerDao.exist(memberNo) && !teacherDao.exist(memberNo)) {
+      if (!studentDao.exist(memberNo) && !teacherDao.exist(memberNo)) {
         memberDao.delete(memberNo);
       }
       

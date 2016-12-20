@@ -40,7 +40,7 @@ public class StudentDetailServlet extends HttpServlet {
       Student student = studentDao.getOne(memberNo);
       
       if (student == null) {
-        throw new Exception("해당 아이디의 학생이 없습니다.");
+        throw new Exception("해당 학생이 없습니다.");
       }
       
       out.println("<table border='1'>");
