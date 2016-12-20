@@ -42,19 +42,16 @@ public class StudentDetailServlet extends HttpServlet {
       if (student == null) {
         throw new Exception("해당 아이디의 학생이 없습니다.");
       }
-      /*
+      
       out.println("<table border='1'>");
-      out.printf("<tr><th>아이디</th><td>"
-          + "<input name='userId' type='text' value='%s' readonly></td></tr>\n",
-          student.getUserId());
+      out.printf("<tr><th>이메일</th><td>"
+          + "<input name='email' type='text' value='%s'></td></tr>\n", 
+          student.getEmail());
       out.printf("<tr><th>암호</th><td>"
           + "<input name='password' type='password'></td></tr>\n");
       out.printf("<tr><th>이름</th><td>"
           + "<input name='name' type='text' value='%s'></td></tr>\n", 
           student.getName());
-      out.printf("<tr><th>이메일</th><td>"
-          + "<input name='email' type='text' value='%s'></td></tr>\n", 
-          student.getEmail());
       out.printf("<tr><th>전화</th><td>"
           + "<input name='tel' type='text' value='%s'></td></tr>\n", 
           student.getTel());
@@ -63,17 +60,25 @@ public class StudentDetailServlet extends HttpServlet {
           + " <input type='radio' name='working' value='false' %s>실업/미취업</td></tr>\n",
           (student.isWorking() ? "checked" : ""),
           (student.isWorking() ? "" : "checked"));
-      out.printf("<tr><th>태어난해</th><td>"
-          + "<input name='birthYear' type='number' value='%d'></td></tr>\n", 
-          student.getBirthYear());
+      out.println("<tr><th>최종학력</th><td>");
+      out.println("<select name='grade'>");
+      out.printf("  <option value='고졸' %s>고졸</option>\n", student.getGrade().equals("고졸") ? "selected" : "");
+      out.printf("  <option value='전문학사' %s>전문학사</option>\n", student.getGrade().equals("전문학사") ? "selected" : "");
+      out.printf("  <option value='학사' %s>학사</option>\n", student.getGrade().equals("학사") ? "selected" : "");
+      out.printf("  <option value='석사' %s>석사</option>\n", student.getGrade().equals("석사") ? "selected" : "");
+      out.printf("  <option value='박사' %s>박사</option>\n", student.getGrade().equals("박사") ? "selected" : "");
+      out.println("</select>");
+      out.println("</td></tr>");
       out.printf("<tr><th>최종학교</th><td>"
-          + "<input name='school' type='text' value='%s'></td></tr>\n", 
-          student.getSchool());
+          + "<input name='schoolName' type='text' value='%s'></td></tr>\n", 
+          student.getSchoolName());
+      out.printf("<tr><th>사진</th><td><input name='photoPath' type='file'></td></tr>");
       out.println("</table>");
       
       out.println("<button type='submit'>변경</button>");
-      out.printf(" <a href='delete?userId=%s'>삭제</a>", student.getUserId());
-      */
+      out.printf(" <a href='delete?memberNo=%s'>삭제</a>\n", student.getMemberNo());
+      out.printf("<input type='hidden' name='memberNo' value='%d'>\n", student.getMemberNo());
+      
     } catch (Exception e) {
       out.printf("<p>%s</p>\n", e.getMessage());
     }
