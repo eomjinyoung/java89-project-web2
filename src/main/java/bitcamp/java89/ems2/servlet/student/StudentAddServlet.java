@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bitcamp.java89.ems2.dao.impl.MemberMysqlDao;
 import bitcamp.java89.ems2.dao.impl.StudentMysqlDao;
+import bitcamp.java89.ems2.domain.Member;
 import bitcamp.java89.ems2.domain.Student;
 
 @WebServlet("/student/add")
@@ -57,6 +58,10 @@ public class StudentAddServlet extends HttpServlet {
       
       if (!memberDao.exist(student.getEmail())) { // 강사나 매니저로 등록되지 않았다면,
         memberDao.insert(student);
+        
+      } else { // 강사나 매니저로 이미 등록된 사용자라면 기존의 회원 번호를 사용한다.
+        Member member = memberDao.getOne(student.getEmail());
+        student.setMemberNo(member.getMemberNo());
       }
       
       studentDao.insert(student);

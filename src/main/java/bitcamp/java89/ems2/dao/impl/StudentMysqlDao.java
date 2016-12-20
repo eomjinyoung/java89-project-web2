@@ -180,5 +180,19 @@ public class StudentMysqlDao implements StudentDao {
       ds.returnConnection(con);
     }
   }
- 
+
+  public void delete(int memberNo) throws Exception {
+    Connection con = ds.getConnection(); // 커넥션풀에서 한 개의 Connection 객체를 임대한다.
+    try (
+      PreparedStatement stmt = con.prepareStatement(
+          "delete from stud where sno=?"); ) {
+      
+      stmt.setInt(1, memberNo);
+      
+      stmt.executeUpdate();
+      
+    } finally {
+      ds.returnConnection(con);
+    }
+  }
 }

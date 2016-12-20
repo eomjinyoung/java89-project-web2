@@ -26,7 +26,7 @@ public class MemberMysqlDao implements StudentDao {
     return instance;
   }
   // end - Singleton 패턴
-
+  
   public boolean exist(String email) throws Exception {
     Connection con = ds.getConnection(); // 커넥션풀에서 한 개의 Connection 객체를 임대한다.
     try (
@@ -79,7 +79,7 @@ public class MemberMysqlDao implements StudentDao {
     try (
       PreparedStatement stmt = con.prepareStatement(
           "update memb set"
-          + " email=?, pwd=?, name=?, tel=?"
+          + " email=?, pwd=password(?), name=?, tel=?"
           + " where mno=?"); ) {
       
       stmt.setString(1, member.getEmail());
@@ -90,6 +90,50 @@ public class MemberMysqlDao implements StudentDao {
       
       stmt.executeUpdate();
       
+    } finally {
+      ds.returnConnection(con);
+    }
+  }
+  
+  public void delete(int memberNo) throws Exception {
+    Connection con = ds.getConnection(); 
+    try (
+      PreparedStatement stmt = con.prepareStatement(
+          "delete from memb where mno=?"); ) {
+      
+      stmt.setInt(1, memberNo);
+      
+      stmt.executeUpdate();
+      
+    } finally {
+      ds.returnConnection(con);
+    }
+  }
+  
+  public Member getOne(String email) throws Exception {
+    Connection con = ds.getConnection(); 
+    try (
+      PreparedStatement stmt = con.prepareStatement(
+          "select mno, name, tel, email"
+          + " from memb"
+          + " where email=?");) {
+
+      stmt.setString(1, email);
+      ResultSet rs = stmt.executeQuery();
+
+      if (rs.next()) { // 서버에서 레코드 한 개를 가져왔다면,
+        Member member = new Member();
+        member.setMemberNo(rs.getInt("mno"));
+        member.setEmail(rs.getString("email"));
+        member.setName(rs.getString("name"));
+        member.setTel(rs.getString("tel"));
+        rs.close();
+        return member;
+        
+      } else {
+        rs.close();
+        return null;
+      }
     } finally {
       ds.returnConnection(con);
     }
