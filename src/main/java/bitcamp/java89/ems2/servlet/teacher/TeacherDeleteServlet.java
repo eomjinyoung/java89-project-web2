@@ -36,6 +36,11 @@ public class TeacherDeleteServlet extends HttpServlet {
       out.println("<title>강사관리-삭제</title>");
       out.println("</head>");
       out.println("<body>");
+      
+      // HeaderServlet에게 머리말 HTML 생성을 요청한다.
+      RequestDispatcher rd = request.getRequestDispatcher("/header");
+      rd.include(request, response);
+      
       out.println("<h1>삭제 결과</h1>");
 
       TeacherMysqlDao teacherDao = TeacherMysqlDao.getInstance();
@@ -55,6 +60,11 @@ public class TeacherDeleteServlet extends HttpServlet {
       }
       
       out.println("<p>삭제하였습니다.</p>");
+      
+      // FooterServlet에게 꼬리말 HTML 생성을 요청한다.
+      rd = request.getRequestDispatcher("/footer");
+      rd.include(request, response);
+      
       out.println("</body>");
       out.println("</html>");
       
