@@ -12,20 +12,9 @@ import bitcamp.java89.ems2.util.DataSource;
 public class ManagerMysqlDao implements StudentDao {
   DataSource ds;
   
-  //Singleton 패턴 - start
-  private ManagerMysqlDao() {
-    ds = DataSource.getInstance();
+  public void setDataSource(DataSource ds) {
+    this.ds = ds;
   }
- 
-  static ManagerMysqlDao instance;
- 
-  public static ManagerMysqlDao getInstance() {
-    if (instance == null) {
-      instance = new ManagerMysqlDao();
-    }
-    return instance;
-  }
-  // end - Singleton 패턴
 
   public boolean exist(int memberNo) throws Exception {
     Connection con = ds.getConnection(); 

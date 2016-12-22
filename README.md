@@ -1,5 +1,12 @@
 # java89-project-web2
 
+## 0.7 - ServletContext 보관소 기능을 사용하여 DAO 공유하기
+- DataSource 클래스에서 Singleton 패턴을 제거한다.
+- 기존의 DAO 클래스에서 Singleton 패턴을 제거한다.
+- 다른 서블릿이 사용할 DAO 객체를 준비시키는 서블릿을 만든다.
+  - ContextLoaderServlet 클래스 정의
+
+
 ## 0.6 - ServletRequest의 보관소 기능을 이용하여 예외 정보 공유
 - 서블릿에서 예외가 발생하면 ErrorServlet으로 실행을 위임한다.
   이때 오류 정보를 ServletRequest에 담아서 넘긴다.
