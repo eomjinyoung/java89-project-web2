@@ -22,8 +22,6 @@ public class StudentUpdateServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
     try {
-      request.setCharacterEncoding("UTF-8");
-      
       Student student = new Student();
       student.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
       student.setEmail(request.getParameter("email"));
