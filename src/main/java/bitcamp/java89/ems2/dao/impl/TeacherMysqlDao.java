@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import bitcamp.java89.ems2.dao.StudentDao;
+import bitcamp.java89.ems2.dao.TeacherDao;
 import bitcamp.java89.ems2.domain.Teacher;
 import bitcamp.java89.ems2.util.DataSource;
 
-public class TeacherMysqlDao implements StudentDao {
+public class TeacherMysqlDao implements TeacherDao {
   DataSource ds;
   
   public void setDataSource(DataSource ds) {
