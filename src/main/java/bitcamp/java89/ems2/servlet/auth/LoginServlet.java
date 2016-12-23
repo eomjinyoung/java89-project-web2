@@ -43,6 +43,11 @@ public class LoginServlet  extends HttpServlet {
     out.println("<title>로그인</title>");
     out.println("</head>");
     out.println("<body>");
+    
+    // HeaderServlet에게 머리말 HTML 생성을 요청한다.
+    RequestDispatcher rd = request.getRequestDispatcher("/header");
+    rd.include(request, response);
+    
     out.println("<h1>로그인</h1>");
     out.println("<form action='login' method='POST'>");
     out.println("<table border='1'>");
@@ -55,6 +60,11 @@ public class LoginServlet  extends HttpServlet {
     
     out.println("<button type='submit'>로그인</button>");
     out.println("</form>");
+    
+    // FooterServlet에게 꼬리말 HTML 생성을 요청한다.
+    rd = request.getRequestDispatcher("/footer");
+    rd.include(request, response);
+    
     out.println("</body>");
     out.println("</html>");
   }
@@ -98,7 +108,17 @@ public class LoginServlet  extends HttpServlet {
       out.println("<title>로그인</title>");
       out.println("</head>");
       out.println("<body>");
+      
+      // HeaderServlet에게 머리말 HTML 생성을 요청한다.
+      RequestDispatcher rd = request.getRequestDispatcher("/header");
+      rd.include(request, response);
+      
       out.println("<h1>로그인 실패</h1>");
+      
+      // FooterServlet에게 꼬리말 HTML 생성을 요청한다.
+      rd = request.getRequestDispatcher("/footer");
+      rd.include(request, response);
+      
       out.println("</body>");
       out.println("</html>");
       
