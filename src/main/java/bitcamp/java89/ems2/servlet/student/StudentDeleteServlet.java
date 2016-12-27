@@ -14,6 +14,7 @@ import bitcamp.java89.ems2.dao.ManagerDao;
 import bitcamp.java89.ems2.dao.MemberDao;
 import bitcamp.java89.ems2.dao.StudentDao;
 import bitcamp.java89.ems2.dao.TeacherDao;
+import bitcamp.java89.ems2.listener.ContextLoaderListener;
 
 @WebServlet("/student/delete")
 public class StudentDeleteServlet extends HttpServlet {
@@ -43,7 +44,8 @@ public class StudentDeleteServlet extends HttpServlet {
       
       out.println("<h1>삭제 결과</h1>");
     
-      StudentDao studentDao = (StudentDao)this.getServletContext().getAttribute("studentDao");
+      StudentDao studentDao = 
+          (StudentDao)ContextLoaderListener.applicationContext.getBean("studentDao");
     
       if (!studentDao.exist(memberNo)) {
         throw new Exception("학생을 찾지 못했습니다.");
@@ -51,9 +53,12 @@ public class StudentDeleteServlet extends HttpServlet {
       
       studentDao.delete(memberNo);
 
-      MemberDao memberDao = (MemberDao)this.getServletContext().getAttribute("memberDao");
-      TeacherDao teacherDao = (TeacherDao)this.getServletContext().getAttribute("teacherDao");
-      ManagerDao managerDao = (ManagerDao)this.getServletContext().getAttribute("managerDao");
+      MemberDao memberDao = 
+          (MemberDao)ContextLoaderListener.applicationContext.getBean("memberDao");
+      TeacherDao teacherDao = 
+          (TeacherDao)ContextLoaderListener.applicationContext.getBean("teacherDao");
+      ManagerDao managerDao = 
+          (ManagerDao)ContextLoaderListener.applicationContext.getBean("managerDao");
       
       if (!managerDao.exist(memberNo) && !teacherDao.exist(memberNo)) {
         memberDao.delete(memberNo);

@@ -206,7 +206,7 @@ public class TeacherMysqlDao implements TeacherDao {
       
       stmt.executeUpdate();
       
-      this.deletePhotoList(teacher);
+      this.deletePhotoList(teacher.getMemberNo());
       this.insertPhotoList(teacher);
       
     } finally {
@@ -219,9 +219,10 @@ public class TeacherMysqlDao implements TeacherDao {
     try (
       PreparedStatement stmt = con.prepareStatement(
           "delete from tcher where tno=?"); ) {
-      
+
+      this.deletePhotoList(memberNo);
+
       stmt.setInt(1, memberNo);
-      
       stmt.executeUpdate();
       
     } finally {
@@ -229,13 +230,13 @@ public class TeacherMysqlDao implements TeacherDao {
     }
   }
   
-  public void deletePhotoList(Teacher teacher) throws Exception {
+  public void deletePhotoList(int memberNo) throws Exception {
     Connection con = ds.getConnection(); 
     try (
       PreparedStatement stmt = con.prepareStatement(
           "delete from tch_phot where tno=?"); ) {
       
-      stmt.setInt(1, teacher.getMemberNo());
+      stmt.setInt(1, memberNo);
       
       stmt.executeUpdate();
       
