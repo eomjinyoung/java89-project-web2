@@ -18,20 +18,23 @@ public class Photo implements Serializable {
   public int getNo() {
     return no;
   }
-  public void setNo(int no) {
+  public Photo setNo(int no) {
     this.no = no;
+    return this;
   }
   public String getFilePath() {
     return filePath;
   }
-  public void setFilePath(String filePath) {
+  public Photo setFilePath(String filePath) {
     this.filePath = filePath;
+    return this;
   }
   public int getOwnerNo() {
     return ownerNo;
   }
-  public void setOwnerNo(int ownerNo) {
+  public Photo setOwnerNo(int ownerNo) {
     this.ownerNo = ownerNo;
+    return this;
   }
   
   
