@@ -1,6 +1,6 @@
 # java89-project-web2
 
-## 1.2 - 학생/매니저/강사 등록시 사진 업로드하기
+## 1.2 - 학생/매니저/강사 등록, 변경할 때 사진 업로드하기
 - 의존 라이브러리 설정하기
   - build.gradle 파일에 apache-fileupload 라이브러리 추가
   - "gradle eclipse" 명령을 수행하여 이클립스 설정 파일을 갱신
@@ -24,10 +24,11 @@
 - 강사 사진 업로드
   - teacher/form.html 파일 변경
     - form 태그에 enctype 속성 추가
-  - ManagerAddServlet, ManagerUpdateServlet 클래스 변경
+  - TeacherAddServlet, TeacherUpdateServlet 클래스 변경
     - fileupload 라이브러리의 클래스를 사용하여 멀티파트 데이터 처리
-  - ManagerDetailServlet 클래스 변경
+  - TeacherDetailServlet 클래스 변경
     - 사진 출력
+  - TeacherMysqlDao 클래스 변경
     
 ## 1.1 - 세션을 이용하여 로그인 사용자 정보 저장하고 꺼내기 
 - LoginServlet의 doPost() 변경
