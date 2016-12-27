@@ -151,15 +151,15 @@ public class LoginServlet  extends HttpServlet {
   }
   
   private Member getMemberInfo(String userType, int memberNo) throws Exception {
-    if (userType.equals("student")) {
+    if (userType.equals(Member.STUDENT)) {
       StudentDao studentDao = (StudentDao)this.getServletContext().getAttribute("studentDao");
       return studentDao.getOne(memberNo);
       
-    } else if (userType.equals("teacher")) {
+    } else if (userType.equals(Member.TEACHER)) {
       TeacherDao teacherDao = (TeacherDao)this.getServletContext().getAttribute("teacherDao");
       return teacherDao.getOne(memberNo);
       
-    } else /*if (userType.equals("manager"))*/ {
+    } else /*if (userType.equals(Member.MANAGER))*/ {
       ManagerDao managerDao = (ManagerDao)this.getServletContext().getAttribute("managerDao");
       return managerDao.getOne(memberNo);
     }

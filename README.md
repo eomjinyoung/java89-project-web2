@@ -3,7 +3,10 @@
 ## 1.3 - 로그인 할 때 사용자의 유형을 지정하고, 로그인 사용자 사진 출력
 - 로그인 폼에 사용자 유형 선택 추가
   - LoginServlet.doGet() 변경
-  
+- MemberDao 클래스 변경
+  - exist(email, password)를 getOne(email, password)로 변경
+- 로그인 사용자 사진 출력
+  - HeaderServlet 클래스 변경
 
 ## 1.2 - 학생/매니저/강사 등록, 변경할 때 사진 업로드하기
 - 의존 라이브러리 설정하기
