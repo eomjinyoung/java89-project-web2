@@ -180,7 +180,9 @@ public class TeacherMysqlDao implements TeacherDao {
       } 
       rs.close();
       
-      teacher.setPhotoList(photoList);
+      if (teacher != null) {
+        teacher.setPhotoList(photoList);
+      }
       
       return teacher;
       
