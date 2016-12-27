@@ -39,7 +39,7 @@ public class StudentDetailServlet extends HttpServlet {
       rd.include(request, response);
       
       out.println("<h1>학생 정보</h1>");
-      out.println("<form action='update' method='POST'>");
+      out.println("<form action='update' method='POST' enctype='multipart/form-data'>");
     
       StudentDao studentDao = (StudentDao)this.getServletContext().getAttribute("studentDao");
 

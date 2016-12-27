@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import bitcamp.java89.ems2.dao.TeacherDao;
+import bitcamp.java89.ems2.domain.Photo;
 import bitcamp.java89.ems2.domain.Teacher;
 import bitcamp.java89.ems2.util.DataSource;
 
@@ -112,6 +114,28 @@ public class TeacherMysqlDao implements TeacherDao {
     }
   } 
 
+  public void insertPhotoList(Teacher teacher) throws Exception {
+    Connection con = ds.getConnection(); 
+    try (
+      PreparedStatement stmt = con.prepareStatement(
+          "insert into tch_phot(tno,path) values(?,?)"); ) {
+      
+      List<Photo> photoList = teacher.getPhotoList();
+      for (Photo photo : photoList) {
+        if (photo.getFilePath() == null) {
+          continue;
+        }
+        
+        stmt.setInt(1, teacher.getMemberNo());
+        stmt.setString(2, photo.getFilePath());
+        stmt.executeUpdate();
+      }
+
+    } finally {
+      ds.returnConnection(con);
+    }
+  }
+  
   public Teacher getOne(int memberNo) throws Exception {
     Connection con = ds.getConnection(); 
     try (
