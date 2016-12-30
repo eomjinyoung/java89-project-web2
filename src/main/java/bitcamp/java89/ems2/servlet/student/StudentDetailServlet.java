@@ -32,7 +32,7 @@ public class StudentDetailServlet extends HttpServlet {
       
       response.setContentType("text/html;charset=UTF-8");
 
-      RequestDispatcher rd = request.getRequestDispatcher("detail.jsp");
+      RequestDispatcher rd = request.getRequestDispatcher("/student/detail.jsp");
       request.setAttribute("student", student);
       rd.include(request, response);
       

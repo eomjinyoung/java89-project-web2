@@ -28,7 +28,7 @@ public class TeacherListServlet extends HttpServlet {
 
       response.setContentType("text/html;charset=UTF-8");
       
-      RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
+      RequestDispatcher rd = request.getRequestDispatcher("/teacher/list.jsp");
       request.setAttribute("teachers", list);
       rd.include(request, response);
       

@@ -28,7 +28,7 @@ public class ManagerListServlet extends HttpServlet {
 
       response.setContentType("text/html;charset=UTF-8");
 
-      RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
+      RequestDispatcher rd = request.getRequestDispatcher("/manager/list.jsp");
       request.setAttribute("managers", list);
       rd.include(request, response);
       
