@@ -4,6 +4,13 @@
 - MVC 구조를 완성한다.
 - StudentListServlet에서 출력 분리
   - /webapp/student/list.jsp 파일 생성
+  - /header.jsp 파일 생성
+  - /footer.jsp 파일 생성
+- JSTL 라이브러리 사용
+  - build.gradle 변경
+  - "gradle eclipse" 실행하여 라이브러리 다운로드 및 이클립스 설정 파일 생성
+  - JSP 파일에 JSP 확장 태그 적용
+- 강사 목록, 매니저 목록에 적용
 
 
 ## 1.4 - 스프링 IoC 컨테이너 적용
