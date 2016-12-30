@@ -5,6 +5,7 @@
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,18 +27,17 @@
   <th>최종학력</th>
   <th>학교명</th>
 </tr>
-<%
-List<Student> students = (List<Student>)request.getAttribute("students");
-for (Student student : students) {%>
+
+<c:forEach var="student" items="${students}">
 <tr> 
-  <td>1</td>
-  <td><a href='detail?memberNo=1'>학생1</a></td>
-  <td>1111-1111</td>
-  <td>true</td>
-  <td>학사</td>
-  <td>비트대학교</td>
+  <td>${student.memberNo}</td>
+  <td><a href='detail?memberNo=${student.memberNo}'>${student.name}</a></td>
+  <td>${student.tel}</td>
+  <td>${student.working}</td>
+  <td>${student.grade}</td>
+  <td>${student.schoolName}</td>
 </tr>
-<%}%>
+</c:forEach>
 </table>
 
 <jsp:include page="../footer.jsp"></jsp:include>
