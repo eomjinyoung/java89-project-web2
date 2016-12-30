@@ -8,32 +8,30 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>학생관리-목록</title>
+<title>강사관리-목록</title>
 </head>
 <body>
 
 <jsp:include page="../header.jsp"></jsp:include>
 
-<h1>학생 정보</h1>
+<h1>강사 정보</h1>
 <a href='form.html'>추가</a><br>
 <table border='1'>
 <tr>
-  <th>회원번호</th>
+  <th>번호</th>
   <th>이름</th>
   <th>전화</th>
-  <th>재직</th>
-  <th>최종학력</th>
-  <th>학교명</th>
+  <th>이메일</th>
+  <th>홈페이지</th>
 </tr>
 
-<c:forEach var="student" items="${students}">
+<c:forEach var="teacher" items="${teachers}">
 <tr> 
-  <td>${student.memberNo}</td>
-  <td><a href='detail?memberNo=${student.memberNo}'>${student.name}</a></td>
-  <td>${student.tel}</td>
-  <td>${student.working}</td>
-  <td>${student.grade}</td>
-  <td>${student.schoolName}</td>
+  <td>${teacher.memberNo}</td>
+  <td><a href='detail?memberNo=${teacher.memberNo}'>${teacher.name}</a></td>
+  <td>${teacher.tel}</td>
+  <td>${teacher.email}</td>
+  <td>${teacher.homepage}</td>
 </tr>
 </c:forEach>
 </table>

@@ -22,14 +22,14 @@ public class StudentListServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
     try {
-      response.setContentType("text/html;charset=UTF-8");
-
       StudentDao studentDao = 
           (StudentDao)ContextLoaderListener.applicationContext.getBean("studentDao");
       ArrayList<Student> list = studentDao.getList();
-      request.setAttribute("students", list);
       
+      response.setContentType("text/html;charset=UTF-8");
+
       RequestDispatcher rd = request.getRequestDispatcher("/student/list.jsp");
+      request.setAttribute("students", list);
       rd.include(request, response);
       
     } catch (Exception e) {

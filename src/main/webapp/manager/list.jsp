@@ -8,32 +8,28 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>학생관리-목록</title>
+<title>매니저관리-목록</title>
 </head>
 <body>
 
 <jsp:include page="../header.jsp"></jsp:include>
 
-<h1>학생 정보</h1>
+<h1>매니저 정보</h1>
 <a href='form.html'>추가</a><br>
 <table border='1'>
 <tr>
-  <th>회원번호</th>
+  <th>번호</th>
   <th>이름</th>
+  <th>직위</th>
   <th>전화</th>
-  <th>재직</th>
-  <th>최종학력</th>
-  <th>학교명</th>
 </tr>
 
-<c:forEach var="student" items="${students}">
+<c:forEach var="manager" items="${managers}">
 <tr> 
-  <td>${student.memberNo}</td>
-  <td><a href='detail?memberNo=${student.memberNo}'>${student.name}</a></td>
-  <td>${student.tel}</td>
-  <td>${student.working}</td>
-  <td>${student.grade}</td>
-  <td>${student.schoolName}</td>
+  <td>${manager.memberNo}</td>
+  <td><a href='detail?memberNo=${manager.memberNo}'>${manager.name}</a></td>
+  <td>${manager.position}</td>
+  <td>${manager.tel}</td>
 </tr>
 </c:forEach>
 </table>
