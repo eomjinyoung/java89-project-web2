@@ -14,7 +14,10 @@
 - 상세 화면 출력에 JSP 적용
   - 학생, 강사, 매니저에 적용
 - 로그인 화면에 JSP 적용
-
+  - LoginServlet.java 변경
+  - /auth/loginform.jsp 생성
+  - /auth/loginfail.jsp 생성
+  
 
 ## 1.4 - 스프링 IoC 컨테이너 적용
 - 스프링 라이브러리 파일 준비
