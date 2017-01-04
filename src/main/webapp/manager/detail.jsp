@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<jsp:include page="../header"></jsp:include>
+<jsp:include page="../header.jsp"></jsp:include>
 
 <h1>매니저 정보</h1>
 <form action='update.do' method='POST' enctype='multipart/form-data'>
