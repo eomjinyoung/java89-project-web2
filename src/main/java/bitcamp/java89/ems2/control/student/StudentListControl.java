@@ -21,7 +21,14 @@ public class StudentListControl implements PageController {
   public String service(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ArrayList<Student> list = studentDao.getList();
     request.setAttribute("students", list);
-    return "/student/list.jsp";
+    request.setAttribute("title", "학생관리-목록");
+    request.setAttribute("contentPage", "/student/list.jsp");
+    return "/main.jsp";
   }
   
 }
+
+
+
+
+
