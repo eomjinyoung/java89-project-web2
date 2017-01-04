@@ -24,11 +24,18 @@ public class DispatcherServlet extends HttpServlet {
       String servletPath = request.getServletPath();
       
       // 스프링 IoC 컨테이너에서 서블릿 경로에 해당하는 객체를 찾는다.
-      PageController pageController = 
-          (PageController)ContextLoaderListener.applicationContext.getBean(servletPath);
+      PageController pageController = null; 
+      try {
+        pageController = (PageController)ContextLoaderListener.applicationContext.getBean(servletPath);
+      } catch (Exception e) {}
       
       // 페이지 컨트롤러를 호출하여 작업을 실행시킨다.
-      String viewUrl = pageController.service(request, response);
+      String viewUrl = null;
+      if (pageController != null) {
+        viewUrl = pageController.service(request, response);
+      } else {
+        viewUrl = servletPath.replaceAll(".do", ".jsp");
+      }
       
       if (viewUrl.startsWith("redirect:")) {
         response.sendRedirect(viewUrl.substring(9));

@@ -19,7 +19,7 @@
     <a href='../auth/logout'>로그아웃</a>
 </c:when>
 <c:otherwise>
-    <a href='../auth/login'>로그인</a>
+    <a href='../auth/loginform.do'>로그인</a>
 </c:otherwise>
 </c:choose>
 
