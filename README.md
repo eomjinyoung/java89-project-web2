@@ -1,5 +1,10 @@
 # java89-project-web2
 
+## 1.6 - 프론트 컨트롤러 패턴 적용
+- 모든 클라이언트의 요청을 받는 서블릿을 앞 세우고,
+  나머지 서블릿들은 일반 POJO 객체로 만든다. 
+- DispatcherServlet 클래스 작성
+
 ## 1.5 - JSP를 사용하여 화면 출력 부분을 분리한다.
 - MVC 구조를 완성한다.
 - StudentListServlet에서 출력 분리
