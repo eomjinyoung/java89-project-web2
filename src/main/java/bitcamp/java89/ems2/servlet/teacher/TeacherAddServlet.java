@@ -1,7 +1,6 @@
 package bitcamp.java89.ems2.servlet.teacher;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -46,24 +45,6 @@ public class TeacherAddServlet extends HttpServlet {
       
       teacher.setPhotoList(photoList);
       
-      response.setContentType("text/html;charset=UTF-8");
-      PrintWriter out = response.getWriter();
-  
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<meta charset='UTF-8'>");
-      out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-      out.println("<title>강사관리-등록</title>");
-      out.println("</head>");
-      out.println("<body>");
-      
-      // HeaderServlet에게 머리말 HTML 생성을 요청한다.
-      RequestDispatcher rd = request.getRequestDispatcher("/header");
-      rd.include(request, response);
-      
-      out.println("<h1>등록 결과</h1>");
-    
       TeacherDao teacherDao = 
           (TeacherDao)ContextLoaderListener.applicationContext.getBean("teacherDao");
     
@@ -83,18 +64,12 @@ public class TeacherAddServlet extends HttpServlet {
       }
       
       teacherDao.insert(teacher);
-      out.println("<p>등록하였습니다.</p>");
-      
-      // FooterServlet에게 꼬리말 HTML 생성을 요청한다.
-      rd = request.getRequestDispatcher("/footer");
-      rd.include(request, response);
-      
-      out.println("</body>");
-      out.println("</html>");
 
+      response.sendRedirect("list");
+      
     } catch (Exception e) {
       request.setAttribute("error", e);
-      RequestDispatcher rd = request.getRequestDispatcher("/error");
+      RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
       rd.forward(request, response);
       return;
     }
