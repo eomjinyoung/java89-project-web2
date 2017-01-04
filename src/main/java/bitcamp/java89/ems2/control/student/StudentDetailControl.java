@@ -25,7 +25,8 @@ public class StudentDetailControl implements PageController {
     }
     
     request.setAttribute("student", student);
-    
-    return "/student/detail.jsp";
+    request.setAttribute("title", "학생관리-상세정보");
+    request.setAttribute("contentPage", "/student/detail.jsp");
+    return "/main.jsp";
   }
 }
