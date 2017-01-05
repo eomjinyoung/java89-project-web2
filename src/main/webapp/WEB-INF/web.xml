@@ -14,7 +14,11 @@
 <!-- 필터 등록 -->
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
-    <filter-class>bitcamp.java89.ems2.filter.CharacterEncodingFilter</filter-class>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
   </filter>
 
 <!-- 필터를 어느 요청에 적용할 것인 지 설정한다. -->
