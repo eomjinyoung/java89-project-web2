@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import bitcamp.java89.ems2.control.PageController;
+import bitcamp.java89.ems2.annotation.RequestMapping;
 import bitcamp.java89.ems2.dao.StudentDao;
 import bitcamp.java89.ems2.domain.Student;
 
-@Controller("/student/list.do")
-public class StudentListControl implements PageController {
+@Controller
+public class StudentListControl {
   @Autowired 
   StudentDao studentDao;
   
-  @Override
-  public String service(HttpServletRequest request, HttpServletResponse response) throws Exception {
+  @RequestMapping("/student/list.do")
+  public String list(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ArrayList<Student> list = studentDao.getList();
     request.setAttribute("students", list);
     request.setAttribute("title", "학생관리-목록");
