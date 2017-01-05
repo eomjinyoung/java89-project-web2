@@ -11,6 +11,7 @@
 - 페이지 컨트롤러에 적용
   - C(reate), R(ead), U(pdate), D(elete)에 해당하는 페이지 컨트롤러를
     한 클래스로 합친다.
+  - StudentControl, ManagerControl, TeacherControl, AuthControl 클래스 생성
  
 
 ## 1.9 - 스프링 필터와 리스너 사용하기
