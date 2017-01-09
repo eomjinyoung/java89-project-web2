@@ -8,6 +8,7 @@
 - 페이지 컨트롤러 변경
   - HttpServletRequest, HttpServletResponse를 파라미터로 받는 대신 직접 파라미터 값을 받기
   - JSP URL 리턴 값 변경
+  - 파일 업로드 처리
 
 ## 2.1 - DispatcherServlet을 스프링의 프론트 컨트롤러로 대체하기
 - web.xml에 스프링 DispatcherServlet 등록하기
