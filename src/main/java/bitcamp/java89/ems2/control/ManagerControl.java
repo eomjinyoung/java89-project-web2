@@ -28,7 +28,7 @@ public class ManagerControl {
   @Autowired TeacherDao teacherDao;
   @Autowired StudentDao studentDao;
 
-  @RequestMapping("/manager/list.do")
+  @RequestMapping("/manager/list")
   public String list(Model model) throws Exception {
     ArrayList<Manager> list = managerDao.getList();
     model.addAttribute("managers", list);
@@ -37,7 +37,7 @@ public class ManagerControl {
     return "main";
   }
   
-  @RequestMapping("/manager/add.do")
+  @RequestMapping("/manager/add")
   public String add(Manager manager, MultipartFile photo) throws Exception {
     if (managerDao.exist(manager.getEmail())) {
       throw new Exception("같은 매니저 이메일이 존재합니다. 등록을 취소합니다.");
@@ -64,7 +64,7 @@ public class ManagerControl {
     return "redirect:list.do";
   }
   
-  @RequestMapping("/manager/delete.do")
+  @RequestMapping("/manager/delete")
   public String delete(int memberNo) throws Exception {
     if (!managerDao.exist(memberNo)) {
       throw new Exception("사용자를 찾지 못했습니다.");
@@ -79,7 +79,7 @@ public class ManagerControl {
     return "redirect:list.do";
   }
   
-  @RequestMapping("/manager/detail.do")
+  @RequestMapping("/manager/detail")
   public String detail(int memberNo, Model model) throws Exception {
     Manager manager = managerDao.getOne(memberNo);
     
@@ -94,7 +94,7 @@ public class ManagerControl {
     return "main";
   }
   
-  @RequestMapping("/manager/update.do")
+  @RequestMapping("/manager/update")
   public String update(Manager manager, MultipartFile photo) throws Exception {
     if (!managerDao.exist(manager.getMemberNo())) {
       throw new Exception("사용자를 찾지 못했습니다.");

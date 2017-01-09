@@ -29,7 +29,7 @@ public class TeacherControl {
   @Autowired TeacherDao teacherDao;
   @Autowired StudentDao studentDao;
   
-  @RequestMapping("/teacher/list.do")
+  @RequestMapping("/teacher/list")
   public String list(Model model) throws Exception {
     ArrayList<Teacher> list = teacherDao.getList();
     model.addAttribute("teachers", list);
@@ -38,7 +38,7 @@ public class TeacherControl {
     return "main";
   }
 
-  @RequestMapping("/teacher/add.do")
+  @RequestMapping("/teacher/add")
   public String add(Teacher teacher, MultipartFile[] photo) throws Exception {
     
     if (teacherDao.exist(teacher.getEmail())) {
@@ -69,7 +69,7 @@ public class TeacherControl {
     return "redirect:list.do";
   }
   
-  @RequestMapping("/teacher/delete.do")
+  @RequestMapping("/teacher/delete")
   public String delete(int memberNo) throws Exception {
     
     if (!teacherDao.exist(memberNo)) {
@@ -85,7 +85,7 @@ public class TeacherControl {
     return "redirect:list.do";
   }
   
-  @RequestMapping("/teacher/detail.do")
+  @RequestMapping("/teacher/detail")
   public String detail(int memberNo, Model model) throws Exception {
     
     Teacher teacher = teacherDao.getOne(memberNo);
@@ -101,7 +101,7 @@ public class TeacherControl {
     return "main";
   }
   
-  @RequestMapping("/teacher/update.do")
+  @RequestMapping("/teacher/update")
   public String update(Teacher teacher, MultipartFile[] photo) throws Exception {
     
     if (!teacherDao.exist(teacher.getMemberNo())) {

@@ -23,7 +23,7 @@ public class AuthControl {
   @Autowired ManagerDao managerDao;
   @Autowired TeacherDao teacherDao;
   
-  @RequestMapping("/auth/login.do")
+  @RequestMapping("/auth/login")
   public String login(String email, String password, boolean saveEmail, String userType,
       HttpServletResponse response, HttpSession session, Model model) throws Exception {
     if (saveEmail) {
@@ -68,14 +68,14 @@ public class AuthControl {
     }
   }
   
-  @RequestMapping("/auth/loginform.do")
+  @RequestMapping("/auth/loginform")
   public String loginform(Model model) throws Exception {
     model.addAttribute("title", "로그인");
     model.addAttribute("contentPage", "/auth/loginform.jsp");
     return "main";
   }
   
-  @RequestMapping("/auth/logout.do")
+  @RequestMapping("/auth/logout")
   public String logout(HttpSession session) throws Exception {
     session.invalidate(); // 기존 세션을 무효화시킨다.
     return "redirect:loginform.do";
