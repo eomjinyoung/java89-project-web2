@@ -88,6 +88,12 @@
 	    path=#{photoPath}
     where sno=#{memberNo}
   </update>
+  
+  <delete id="delete" parameterType="int">
+  <![CDATA[
+    delete from stud where sno=#{value}
+  ]]>
+  </delete>
 
 </mapper>
 

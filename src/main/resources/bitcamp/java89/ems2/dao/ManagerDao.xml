@@ -5,6 +5,13 @@
   
 <mapper namespace="bitcamp.java89.ems2.dao.ManagerDao">
 
+  <select id="countByNo" parameterType="int" resultType="int">
+    select count(*)
+    from mgr mr 
+      inner join memb m on mr.mrno=m.mno
+    where mr.mrno=#{value}
+  </select>
+  
   <insert id="insert" parameterType="member" 
           useGeneratedKeys="true" keyColumn="mno" keyProperty="memberNo">
     insert into memb(name, email, tel, pwd)

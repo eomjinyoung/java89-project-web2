@@ -1,5 +1,7 @@
 package bitcamp.java89.ems2.dao;
 
+import java.util.Map;
+
 import bitcamp.java89.ems2.domain.Member;
 
 public interface MemberDao {
@@ -8,5 +10,5 @@ public interface MemberDao {
   void update(Member member) throws Exception;
   void delete(int memberNo) throws Exception;
   Member getOne(String email) throws Exception;
-  Member getOne(String email, String password) throws Exception;
+  Member getOneByEmailPassword(Map<String,String> paramMap) throws Exception;
 }

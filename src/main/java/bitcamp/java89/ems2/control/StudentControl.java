@@ -85,7 +85,7 @@ public class StudentControl {
     
     studentDao.delete(memberNo);
 
-    if (!managerDao.exist(memberNo) && !teacherDao.exist(memberNo)) {
+    if (managerDao.countByNo(memberNo) == 0 && teacherDao.countByNo(memberNo) == 0) {
       memberDao.delete(memberNo);
     }
     

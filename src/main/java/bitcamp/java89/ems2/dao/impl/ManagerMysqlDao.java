@@ -13,34 +13,8 @@ import bitcamp.java89.ems2.domain.Manager;
 import bitcamp.java89.ems2.util.DataSource;
 
 //@Repository("managerDao")
-public class ManagerMysqlDao implements ManagerDao {
+public class ManagerMysqlDao {
   @Autowired DataSource ds;
-  
-  public boolean exist(int memberNo) throws Exception {
-    Connection con = ds.getConnection(); 
-    try (
-      PreparedStatement stmt = con.prepareStatement(
-          "select count(*)"
-          + " from mgr left outer join memb on mgr.mrno=memb.mno"
-          + " where mrno=?"); ) {
-      
-      stmt.setInt(1, memberNo);
-      ResultSet rs = stmt.executeQuery();
-      
-      rs.next();
-      int count = rs.getInt(1);
-      rs.close();
-      
-      if (count > 0) {
-        return true;
-      } else {
-        return false;
-      }
-      
-    } finally {
-      ds.returnConnection(con);
-    }
-  } 
   
   public ArrayList<Manager> getList() throws Exception {
     ArrayList<Manager> list = new ArrayList<>();

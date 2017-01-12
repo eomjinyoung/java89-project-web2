@@ -15,34 +15,9 @@ import bitcamp.java89.ems2.domain.Teacher;
 import bitcamp.java89.ems2.util.DataSource;
 
 //@Repository("teacherDao")
-public class TeacherMysqlDao implements TeacherDao {
+public class TeacherMysqlDao {
   @Autowired DataSource ds;
 
-  public boolean exist(int memberNo) throws Exception {
-    Connection con = ds.getConnection(); 
-    try (
-      PreparedStatement stmt = con.prepareStatement(
-          "select count(*)"
-          + " from tcher left outer join memb on tcher.tno=memb.mno"
-          + " where tno=?"); ) {
-      
-      stmt.setInt(1, memberNo);
-      ResultSet rs = stmt.executeQuery();
-      
-      rs.next();
-      int count = rs.getInt(1);
-      rs.close();
-      
-      if (count > 0) {
-        return true;
-      } else {
-        return false;
-      }
-      
-    } finally {
-      ds.returnConnection(con);
-    }
-  } 
 
   public ArrayList<Teacher> getList() throws Exception {
     ArrayList<Teacher> list = new ArrayList<>();

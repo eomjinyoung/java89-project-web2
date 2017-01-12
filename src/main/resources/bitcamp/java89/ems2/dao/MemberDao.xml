@@ -26,6 +26,17 @@
     from memb
     where email=#{value}
   </select>
+  
+  <select id="getOneByEmailPassword" parameterType="map" resultMap="member-map">
+    select 
+      mno, 
+      name, 
+      tel, 
+      email
+    from memb
+    where email=#{email} 
+      and pwd=password(#{password})
+  </select>
 
   <insert id="insert" parameterType="member" 
           useGeneratedKeys="true" keyColumn="mno" keyProperty="memberNo">
@@ -42,6 +53,9 @@
     where mno=#{memberNo}
   </update> 
 
+  <delete id="delete" parameterType="int">
+    delete from memb where mno=#{value}
+  </delete>
 </mapper>
 
 
