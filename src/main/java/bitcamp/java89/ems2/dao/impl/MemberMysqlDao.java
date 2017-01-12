@@ -12,7 +12,7 @@ import bitcamp.java89.ems2.dao.MemberDao;
 import bitcamp.java89.ems2.domain.Member;
 import bitcamp.java89.ems2.util.DataSource;
 
-@Repository("memberDao")
+//@Repository("memberDao")
 public class MemberMysqlDao implements MemberDao {
   @Autowired DataSource ds;
   

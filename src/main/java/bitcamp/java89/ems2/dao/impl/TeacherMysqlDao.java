@@ -14,7 +14,7 @@ import bitcamp.java89.ems2.domain.Photo;
 import bitcamp.java89.ems2.domain.Teacher;
 import bitcamp.java89.ems2.util.DataSource;
 
-@Repository("teacherDao")
+//@Repository("teacherDao")
 public class TeacherMysqlDao implements TeacherDao {
   @Autowired DataSource ds;
 
