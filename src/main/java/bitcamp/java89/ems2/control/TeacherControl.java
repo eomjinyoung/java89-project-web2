@@ -61,11 +61,14 @@ public class TeacherControl {
         photoList.add(new Photo(newFilename));
       }
     }
+    
     teacher.setPhotoList(photoList);
-
     
     teacherDao.insert(teacher);
-    teacherDao.insertPhoto(teacher);
+    
+    if (photoList.size() > 0) {
+      teacherDao.insertPhoto(teacher);
+    }
 
     return "redirect:list.do";
   }
@@ -124,7 +127,10 @@ public class TeacherControl {
     
     teacherDao.update(teacher);
     teacherDao.deletePhoto(teacher.getMemberNo());
-    teacherDao.insertPhoto(teacher);
+    
+    if (photoList.size() > 0) {
+      teacherDao.insertPhoto(teacher);
+    }
     
     return "redirect:list.do";
   }
