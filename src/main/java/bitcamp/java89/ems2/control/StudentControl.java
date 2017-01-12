@@ -55,11 +55,11 @@ public class StudentControl {
   @RequestMapping("/student/add")
   public String add(Student student, MultipartFile photo) throws Exception {
     
-    if (studentDao.exist(student.getEmail())) {
+    if (studentDao.count(student.getEmail()) > 0) {
       throw new Exception("같은 학생의 이메일이 존재합니다. 등록을 취소합니다.");
     }
     
-    if (!memberDao.exist(student.getEmail())) { 
+    if (memberDao.count(student.getEmail()) == 0) { 
       memberDao.insert(student);
     } else {
       Member member = memberDao.getOne(student.getEmail());

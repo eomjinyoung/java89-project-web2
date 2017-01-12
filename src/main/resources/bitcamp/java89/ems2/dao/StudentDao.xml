@@ -20,6 +20,13 @@
     <result column="path"       property="photoPath"/>
   </resultMap>
   
+  <select id="count" parameterType="string" resultType="int">
+    select count(*)
+    from stud s 
+      left outer join memb m on s.sno=m.mno
+    where email=#{value}
+  </select>
+  
   <select id="getList" resultMap="student-map">
     select 
       m.mno, 
@@ -34,10 +41,21 @@
       left outer join memb m on s.sno=m.mno
   </select>
 
-  <insert id="insert" parameterType="member" 
+  <insert id="insert" parameterType="student" 
           useGeneratedKeys="true" keyColumn="mno" keyProperty="memberNo">
-    insert into memb(name, email, tel, pwd)
-    values(#{name}, #{email}, #{tel}, password(#{password}))
+    insert into stud(sno,work,lst_schl,schl_nm,path) 
+    values(
+      #{memberNo},
+      #{working},
+      <!--  
+      <choose>
+        <when test="working == true">'Y'</when> 
+        <otherwise>'N'</otherwise>
+      </choose>,
+      -->
+      #{grade}, 
+      #{schoolName}, 
+      #{photoPath})
   </insert>  
 
 </mapper>
