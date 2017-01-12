@@ -27,6 +27,13 @@
     where email=#{value}
   </select>
   
+  <select id="countByNo" parameterType="int" resultType="int">
+    select count(*)
+    from stud s 
+      left outer join memb m on s.sno=m.mno
+    where s.sno=#{value}
+  </select>
+  
   <select id="getList" resultMap="student-map">
     select 
       m.mno, 
@@ -39,6 +46,21 @@
       s.path
     from stud s
       left outer join memb m on s.sno=m.mno
+  </select>
+  
+  <select id="getOne" parameterType="int" resultMap="student-map">
+    select
+      m.mno,
+      m.name, 
+      m.tel, 
+      m.email, 
+      s.work, 
+      s.lst_schl, 
+      s.schl_nm, 
+      s.path
+    from stud s
+      left outer join memb m on s.sno=m.mno
+    where m.mno=#{value}
   </select>
 
   <insert id="insert" parameterType="student" 
@@ -57,6 +79,15 @@
       #{schoolName}, 
       #{photoPath})
   </insert>  
+  
+  <update id="update" parameterType="student">
+    update stud set
+	    work=#{working}, 
+	    lst_schl=#{grade}, 
+	    schl_nm=#{schoolName}, 
+	    path=#{photoPath}
+    where sno=#{memberNo}
+  </update>
 
 </mapper>
 

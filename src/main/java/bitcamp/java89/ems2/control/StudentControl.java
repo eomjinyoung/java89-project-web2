@@ -79,7 +79,7 @@ public class StudentControl {
 
   @RequestMapping("/student/delete")
   public String delete(int memberNo, HttpServletRequest request) throws Exception {
-    if (!studentDao.exist(memberNo)) {
+    if (studentDao.countByNo(memberNo) == 0) {
       throw new Exception("학생을 찾지 못했습니다.");
     }
     
@@ -95,7 +95,7 @@ public class StudentControl {
   @RequestMapping("/student/update")
   public String update(Student student, MultipartFile photo) throws Exception {
     
-    if (!studentDao.exist(student.getMemberNo())) {
+    if (studentDao.countByNo(student.getMemberNo()) == 0) {
       throw new Exception("학생을 찾지 못했습니다.");
     }
     

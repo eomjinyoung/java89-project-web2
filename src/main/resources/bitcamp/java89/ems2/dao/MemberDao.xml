@@ -31,7 +31,16 @@
           useGeneratedKeys="true" keyColumn="mno" keyProperty="memberNo">
     insert into memb(name, email, tel, pwd)
     values(#{name}, #{email}, #{tel}, password(#{password}))
-  </insert>  
+  </insert> 
+  
+  <update id="update" parameterType="member">
+    update memb set
+      email=#{email}, 
+      pwd=password(#{password}), 
+      name=#{name}, 
+      tel=#{tel}
+    where mno=#{memberNo}
+  </update> 
 
 </mapper>
 

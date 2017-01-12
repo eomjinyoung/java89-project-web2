@@ -48,26 +48,7 @@ public class MemberMysqlDao  {
   }
   
  
-  public void update(Member member) throws Exception {
-    Connection con = ds.getConnection(); // 커넥션풀에서 한 개의 Connection 객체를 임대한다.
-    try (
-      PreparedStatement stmt = con.prepareStatement(
-          "update memb set"
-          + " email=?, pwd=password(?), name=?, tel=?"
-          + " where mno=?"); ) {
-      
-      stmt.setString(1, member.getEmail());
-      stmt.setString(2, member.getPassword());
-      stmt.setString(3, member.getName());
-      stmt.setString(4, member.getTel());
-      stmt.setInt(5, member.getMemberNo());
-      
-      stmt.executeUpdate();
-      
-    } finally {
-      ds.returnConnection(con);
-    }
-  }
+  
   
   public void delete(int memberNo) throws Exception {
     Connection con = ds.getConnection(); 
