@@ -5,11 +5,44 @@
   
 <mapper namespace="bitcamp.java89.ems2.dao.TeacherDao">
 
+  <resultMap type="teacher" id="teacher-map">
+    <id     column="mno"        property="memberNo"/>
+    <result column="name"       property="name"/>
+    <result column="email"      property="email"/>
+    <result column="pwd"        property="password"/>
+    <result column="tel"        property="tel"/>
+    <result column="hmpg"       property="homepage"/>
+    <result column="fcbk"       property="facebook"/>
+    <result column="twit"       property="twitter"/>
+    
+    <collection property="photoList" ofType="photo">
+      <id     column="tpno"     property="no"/>
+      <result column="path"     property="filePath"/>
+    </collection>
+  </resultMap>
+  
   <select id="countByNo" parameterType="int" resultType="int">
     select count(*)
     from tcher t 
       inner join memb m on t.tno=m.mno
     where t.tno=#{value}
+  </select>
+  
+  <select id="getOneWithPhoto" parameterType="int" resultMap="teacher-map">
+    select 
+      m.mno, 
+      m.name, 
+      m.email, 
+      m.tel, 
+      t.hmpg, 
+      t.fcbk, 
+      t.twit, 
+      tp.tpno, 
+      tp.path
+    from memb m 
+            inner join tcher t on m.mno=t.tno
+            inner join tch_phot tp on t.tno=tp.tno
+    where m.mno=#{value}
   </select>
   
   <insert id="insert" parameterType="member" 
