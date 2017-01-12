@@ -41,11 +41,11 @@ public class TeacherControl {
   @RequestMapping("/teacher/add")
   public String add(Teacher teacher, MultipartFile[] photo) throws Exception {
     
-    if (teacherDao.exist(teacher.getEmail())) {
+    if (teacherDao.count(teacher.getEmail()) > 0) {
       throw new Exception("이메일이 존재합니다. 등록을 취소합니다.");
     }
     
-    if (!memberDao.exist(teacher.getEmail())) { // 학생이나 매니저로 등록되지 않았다면,
+    if (memberDao.count(teacher.getEmail()) == 0) { // 학생이나 매니저로 등록되지 않았다면,
       memberDao.insert(teacher);
       
     } else { // 학생이나 매니저로 이미 등록된 사용자라면 기존의 회원 번호를 사용한다.
@@ -65,6 +65,7 @@ public class TeacherControl {
 
     
     teacherDao.insert(teacher);
+    teacherDao.insertPhoto(teacher);
 
     return "redirect:list.do";
   }
@@ -72,13 +73,13 @@ public class TeacherControl {
   @RequestMapping("/teacher/delete")
   public String delete(int memberNo) throws Exception {
     
-    if (!teacherDao.exist(memberNo)) {
+    if (teacherDao.countByNo(memberNo) == 0) {
       throw new Exception("강사를 찾지 못했습니다.");
     }
     
     teacherDao.delete(memberNo);
 
-    if (!studentDao.exist(memberNo) && !managerDao.exist(memberNo)) {
+    if (studentDao.countByNo(memberNo) == 0 && managerDao.countByNo(memberNo) == 0) {
       memberDao.delete(memberNo);
     }
     
@@ -88,7 +89,7 @@ public class TeacherControl {
   @RequestMapping("/teacher/detail")
   public String detail(int memberNo, Model model) throws Exception {
     
-    Teacher teacher = teacherDao.getOne(memberNo);
+    Teacher teacher = teacherDao.getOneWithPhoto(memberNo);
     
     if (teacher == null) {
       throw new Exception("해당 강사가 없습니다.");
@@ -104,7 +105,7 @@ public class TeacherControl {
   @RequestMapping("/teacher/update")
   public String update(Teacher teacher, MultipartFile[] photo) throws Exception {
     
-    if (!teacherDao.exist(teacher.getMemberNo())) {
+    if (teacherDao.countByNo(teacher.getMemberNo()) == 0) {
       throw new Exception("강사를 찾지 못했습니다.");
     }
     

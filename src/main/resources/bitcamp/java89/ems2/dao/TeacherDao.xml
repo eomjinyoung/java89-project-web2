@@ -21,11 +21,29 @@
     </collection>
   </resultMap>
   
+  <select id="count" parameterType="string" resultType="int">
+    select count(*)
+    from tcher t 
+      inner join memb m on t.tno=m.mno
+    where m.email=#{value}
+  </select>
+  
   <select id="countByNo" parameterType="int" resultType="int">
     select count(*)
     from tcher t 
       inner join memb m on t.tno=m.mno
     where t.tno=#{value}
+  </select>
+  
+  <select id="getList" resultMap="teacher-map">
+    select 
+      m.mno, 
+      m.name, 
+      m.email, 
+      m.tel, 
+      t.hmpg 
+    from memb m 
+      inner join tcher t on m.mno=t.tno
   </select>
   
   <select id="getOneWithPhoto" parameterType="int" resultMap="teacher-map">
@@ -41,16 +59,24 @@
       tp.path
     from memb m 
             inner join tcher t on m.mno=t.tno
-            inner join tch_phot tp on t.tno=tp.tno
+            left outer join tch_phot tp on t.tno=tp.tno
     where m.mno=#{value}
   </select>
   
-  <insert id="insert" parameterType="member" 
+  <insert id="insert" parameterType="teacher" 
           useGeneratedKeys="true" keyColumn="mno" keyProperty="memberNo">
-    insert into memb(name, email, tel, pwd)
-    values(#{name}, #{email}, #{tel}, password(#{password}))
+    insert into tcher(tno,hmpg,fcbk,twit) 
+    values(#{memberNo}, #{homepage}, #{facebook}, #{twitter})
   </insert>  
 
+  <insert id="insertPhoto" parameterType="teacher" 
+          useGeneratedKeys="true" keyColumn="mno" keyProperty="memberNo">
+    insert into tch_phot(tno,path) 
+    values
+    <foreach collection="photoList" item="photo" separator=",">
+      (#{memberNo}, #{photo.filePath})
+    </foreach>
+  </insert> 
 </mapper>
 
 
