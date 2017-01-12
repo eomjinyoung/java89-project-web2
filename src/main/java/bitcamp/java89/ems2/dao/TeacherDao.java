@@ -13,4 +13,5 @@ public interface TeacherDao {
   Teacher getOneWithPhoto(int memberNo) throws Exception;
   void update(Teacher teacher) throws Exception;
   void delete(int memberNo) throws Exception;
+  void deletePhoto(int memberNo) throws Exception;
 }

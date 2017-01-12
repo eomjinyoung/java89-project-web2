@@ -17,11 +17,30 @@
     <result column="path"       property="photoPath"/>
   </resultMap>
   
+  <select id="count" parameterType="String" resultType="int">
+    select count(*)
+    from mgr mr 
+      inner join memb m on mr.mrno=m.mno
+    where m.email=#{value}
+  </select>
+  
   <select id="countByNo" parameterType="int" resultType="int">
     select count(*)
     from mgr mr 
       inner join memb m on mr.mrno=m.mno
     where mr.mrno=#{value}
+  </select>
+  
+  <select id="getList" resultMap="manager-map">
+    select 
+      mno, 
+      name, 
+      tel, 
+      email, 
+      posi, 
+      path
+    from mgr mr
+      inner join memb m on mr.mrno=m.mno
   </select>
   
   <select id="getOne" parameterType="int" resultMap="manager-map">
@@ -38,12 +57,23 @@
     where m.mno=#{value} 
   </select>
   
-  <insert id="insert" parameterType="member" 
-          useGeneratedKeys="true" keyColumn="mno" keyProperty="memberNo">
-    insert into memb(name, email, tel, pwd)
-    values(#{name}, #{email}, #{tel}, password(#{password}))
+  <insert id="insert" parameterType="manager">
+    insert into mgr(mrno, posi, fax, path) 
+    values(#{memberNo}, #{position}, #{fax}, #{photoPath})
   </insert>  
 
+  <update id="update" parameterType="manager">
+    update mgr set
+      posi=#{position}, 
+      fax=#{fax}, 
+      path=#{photoPath}
+    where mrno=#{memberNo}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from mgr where mrno=#{value}
+  </delete>
+  
 </mapper>
 
 

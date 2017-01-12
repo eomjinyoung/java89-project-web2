@@ -11,7 +11,10 @@
   - build.gradle 변경 : mybatis, mybatis-spring, spring-jdbc, commons-dbcp
   - "gradle eclipse" 실행
   - 프로젝트 리프래시
-  
+- DAO 구현체 제거
+  - 클래스 및 패키지 제거
+- DAO 인터페이스 및 SQL 맵퍼 파일 변경
+- 페이지 컨트롤러 변경
   
 ## 2.2 - 페이지 컨트롤러에서 요청 핸들러의 파라미터 다루기
 - /WEB-INF/conf/dispatcher-servlet.xml 에 부가 장치 등록

@@ -63,8 +63,7 @@
     where m.mno=#{value}
   </select>
 
-  <insert id="insert" parameterType="student" 
-          useGeneratedKeys="true" keyColumn="mno" keyProperty="memberNo">
+  <insert id="insert" parameterType="student">
     insert into stud(sno,work,lst_schl,schl_nm,path) 
     values(
       #{memberNo},
