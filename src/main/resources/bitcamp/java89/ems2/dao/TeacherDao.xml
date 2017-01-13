@@ -68,8 +68,7 @@
     values(#{memberNo}, #{homepage}, #{facebook}, #{twitter})
   </insert>  
 
-  <insert id="insertPhoto" parameterType="teacher" 
-          useGeneratedKeys="true" keyColumn="mno" keyProperty="memberNo">
+  <insert id="insertPhoto" parameterType="teacher">
     insert into tch_phot(tno,path) 
     values
     <foreach collection="photoList" item="photo" separator=",">
