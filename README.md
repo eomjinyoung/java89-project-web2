@@ -10,7 +10,7 @@
 - service 패키지 생성
 - Service 객체의 인터페이스 정의
   - StudentService, ManagerService, TeacherService, AuthService
-- Service 객체의 구현체 생성
+- Service 의 구현체 생성
   - StudentServiceImpl, ManagerServiceImpl, TeacherServiceImpl, AuthServiceImpl
 
 
