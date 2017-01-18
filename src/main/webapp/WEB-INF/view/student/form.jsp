@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>학생관리-입력폼</title>
-</head>
-<body>
-
-<div id='header' style='background-color:gray; height:40px;'>
-<img src='../image/logo.jpeg' height="30" style='float:left; margin-top:6px; margin-left:6px;'> 
-<div style='color:white; font-weight:bold; margin-left:60px; padding-top:7px; font-family:돋움체,sans-serif; font-size:x-large;'>교육센터관리시스템</div>
-</div>
-
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 <h1>학생 등록폼</h1>
 <form action='add.do' method='POST' enctype="multipart/form-data">
 <table border='1'>
@@ -35,17 +27,3 @@
 <button type='submit'>등록</button>
  <a href='list.do'>목록</a>
 </form>
-
-<div id='footer' style='background-color:gray; height:20px; margin-top:20px;'>
-	<div style='color:white; padding-top:2px; font-family:돋움체,sans-serif; text-align:center; font-weight:lighter;'>
-	  @2016 비트캠프 자바89기
-	</div>
-</div>
-
-</body>
-</html>
-
-
-
-
-
