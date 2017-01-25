@@ -87,8 +87,7 @@ get('list.json', function(jsonText) {
   for (var student of list) {
 	  var tr = document.createElement("tr");
 	  tr.innerHTML = "<tr><td>" + 
-	    student.memberNo + "</td><td><a class='name-link' href='#' data-no='" + 
-	    student.memberNo + "'>" + 
+	    student.memberNo + "</td><td><a href='http://www.daum.net' onclick='return goView()'>" + 
 	    student.name + "</a></td><td>" + 
 	    student.tel + "</td><td>" + 
 	    student.working + "</td><td>" +
@@ -96,17 +95,7 @@ get('list.json', function(jsonText) {
 	    student.schoolName + "</td></tr>";
 	  tbody.appendChild(tr);  
   }
-  
-	// 학생 목록에서 이름 링크에 click 이벤트를 처리한다.
-	var al = document.querySelectorAll('.name-link');
-	for (var a of al) {
-		a.onclick = function(event) {
-			event.preventDefault();
-			location.href = 'view.html?memberNo=' + this.getAttribute("data-no");
-		}
-	}
 });
-
 
 function get(url, success) {
 	var xhr = new XMLHttpRequest();
@@ -119,6 +108,10 @@ function get(url, success) {
 	xhr.send();
 }
 
+function goView() {
+	alert("ok....");
+	return false;
+}
 
 </script>
 
