@@ -34,7 +34,7 @@ public class LoginCheckFilter implements Filter {
       HttpSession session = request.getSession();
       Member member = (Member)session.getAttribute("member");
       
-      if (member == null) { 
+      if (member == null) {
         response.sendRedirect(request.getContextPath() + "/auth/loginform.do");
         return;
       } 
