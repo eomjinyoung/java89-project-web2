@@ -14,23 +14,19 @@
   -->
   <context:component-scan base-package="bitcamp.java89.ems2.control.json"/>
 
-  <!-- MVC 관련 애노테이션을 처리할 수 있는 객체를 등록한다. -->
-  <mvc:annotation-driven/>
-
   <!--  뷰 컴포넌트 관리자(View Resolver; 뷰 해결사) 등록
     => 요청 핸들러가 리턴하는 객체를 JSON 문자열로 자동 변환시키는 뷰리졸버 등록
-    => 만약 페이지 컨트롤러가 @RestController 애노테이션으로 선언되었다면 다음 객체를 등록하지 않아도 된다. 
    -->
-  <!--  
-  <mvc:view-resolvers>
-    <mvc:content-negotiation>
-        <mvc:default-views>
+  <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <property name="defaultViews">
+        <list>
             <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
-        </mvc:default-views>
-    </mvc:content-negotiation>
-    <mvc:jsp/>
-  </mvc:view-resolvers>
-  -->
+        </list>
+    </property>
+  </bean>
+  
+  <!-- MVC 관련 애노테이션을 처리할 수 있는 객체를 등록한다. -->
+  <mvc:annotation-driven/>
   
   <!-- 멀티파트 요청 데이터를 처리하는 객체 등록 
    => 이 객체는 Apache의 commons-fileupload 라이브러리를 사용한다.
