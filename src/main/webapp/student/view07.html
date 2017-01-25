@@ -67,9 +67,22 @@ body {
 
 <div id='footer' style='background-color:gray; height:20px; margin-top:20px;'></div>
 
-<script src="../js/bit.js"></script>
-<script src="../js/common.js"></script>
 <script>
+//header.html을 가져와서 붙인다.
+get('../header.html', function(result) {
+  document.querySelector('#header').innerHTML = result;
+});
+
+// sidebar.html을 가져와서 붙인다.
+get('../sidebar.html', function(result) {
+  document.querySelector('#sidebar').innerHTML = result;
+});
+
+// footer.html을 가져와서 붙인다.
+get('../footer.html', function(result) {
+  document.querySelector('#footer').innerHTML = result;
+});
+
 var memberNo = location.href.split('?')[1].split('=')[1];
 
 //학생 목록 가져와서 tr 태그를 만들어 붙인다.
@@ -98,7 +111,16 @@ get('detail.json?memberNo=' + memberNo, function(jsonText) {
   document.querySelector('#photo-img').src = "../upload/" + student.photoPath;
 });
 
-
+function get(url, success) {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+	  if (xhr.readyState < 4) 
+	    return;
+	  success(xhr.responseText);
+	}
+	xhr.open('get', url, true);
+	xhr.send();
+}
 
 </script>
 

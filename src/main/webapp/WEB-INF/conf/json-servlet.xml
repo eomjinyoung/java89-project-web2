@@ -38,6 +38,7 @@
   </bean>
   
   <!-- 인터셉터 등록 -->
+  <!--  
   <mvc:interceptors>
     <mvc:interceptor>
         <mvc:mapping path="/**"/>
@@ -45,6 +46,7 @@
         <bean class="bitcamp.java89.ems2.interceptor.LoginCheckInterceptor"/>
     </mvc:interceptor>
   </mvc:interceptors>
+  -->
 </beans>
 
 
