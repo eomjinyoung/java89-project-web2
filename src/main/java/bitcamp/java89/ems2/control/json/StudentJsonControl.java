@@ -7,7 +7,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,13 +21,6 @@ public class StudentJsonControl {
   @Autowired ServletContext sc;
   
   @Autowired StudentService studentService;
-  
-  @RequestMapping("/student/form")
-  public String form(Model model) {
-    model.addAttribute("title", "학생 입력폼");
-    model.addAttribute("contentPage", "student/form.jsp");
-    return "main";
-  }
   
   @RequestMapping("/student/list")
   public AjaxResult list() throws Exception {
