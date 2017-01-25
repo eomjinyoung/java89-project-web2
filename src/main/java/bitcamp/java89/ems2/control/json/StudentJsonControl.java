@@ -30,9 +30,9 @@ public class StudentJsonControl {
   }
   
   @RequestMapping("/student/list")
-  public List<Student> list() throws Exception {
+  public AjaxResult list() throws Exception {
     List<Student> list = studentService.getList();
-    return list;
+    return new AjaxResult(AjaxResult.SUCCESS, list);
   }
   
   @RequestMapping("/student/detail")
