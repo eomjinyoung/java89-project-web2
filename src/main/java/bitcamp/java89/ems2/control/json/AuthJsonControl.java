@@ -18,8 +18,9 @@ public class AuthJsonControl {
   @Autowired AuthService authService;
   
   @RequestMapping("/auth/login")
-  public String login(String email, String password, boolean saveEmail, String userType,
+  public AjaxResult login(String email, String password, boolean saveEmail, String userType,
       HttpServletResponse response, HttpSession session, Model model) throws Exception {
+    
     if (saveEmail) {
       // 쿠키를 웹 브라우저에게 보낸다.
       Cookie cookie = new Cookie("email", email);
@@ -32,18 +33,14 @@ public class AuthJsonControl {
       cookie.setMaxAge(0);
       response.addCookie(cookie);
     }
-    
     Member member = authService.getMemberInfo(email, password, userType);
         
     if (member == null) {
-      response.setHeader("Refresh", "2;url=loginform.do");
-      model.addAttribute("title", "로그인");
-      model.addAttribute("contentPage", "auth/loginfail.jsp");
-      return "main";
+      return new AjaxResult(AjaxResult.FAIL, "이메일 또는 암호가 틀리거나, 가입된 회원이 아닙니다.");
     }
     
     session.setAttribute("member", member); // HttpSession에 저장한다.
-    return "redirect:../student/list.do";
+    return new AjaxResult(AjaxResult.SUCCESS, "로그인 성공!");
   }
   
   @RequestMapping("/auth/loginform")

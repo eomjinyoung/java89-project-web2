@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>로그인</title>
+<style type="text/css">
+body {
+  font-family: '맑은 고딕', sans-serif;
+}
+
+#sidebar {
+  color: white;
+  padding: 10px 5px;
+  float: left;
+  margin: 5px 5px 5px 0px;
+}
+
+#sidebar a {
+  color: white;
+  text-decoration: none;
+}
+
+#content {
+  margin-left: 200px;
+}
+
+#footer {
+  clear: left;
+}
+</style>
+</head>
+<body>
+
+<div id='header' style='background-color:gray; height:40px;position:relative;'></div>
+
+<div id='sidebar' style='background-color:Navy; width:180px; height:400px;'></div>
+
+<div id="content">
+<h1>로그인</h1>
+<form>
+<table border='1'>
+<tr>
+  <th>회원 유형</th>
+  <td>
+    <input type='radio' name='user-type' value='student' checked>학생
+    <input type='radio' name='user-type' value='teacher'>강사
+    <input type='radio' name='user-type' value='manager'>운영자
+  </td>
+</tr>
+<tr><th>이메일</th><td><input id='email' type='text' placeholder='예)hong@test.com'></td></tr>
+<tr><th>암호</th><td><input id='password' type='password'></td></tr>
+<tr><th></th><td><input id='save-email' type='checkbox'> 이메일 저장</td></tr>
+</table>
+<button id='login-btn' type='button'>로그인</button>
+</form>
+</div>
+
+<div id='footer' style='background-color:gray; height:20px; margin-top:20px;'></div>
+
+<script src="../js/bit.js"></script>
+<script src="../js/common.js"></script>
+<script>
+document.querySelector('#login-btn').onclick = function() {
+	var param = {
+		email: document.querySelector('#email').value,
+		password: document.querySelector('#password').value,
+		saveEmail: document.querySelector('#save-email').checked 
+	};
+	
+	var userTypeList = document.querySelectorAll('input[name=user-type]');
+	for (var i = 0; i < userTypeList.length; i++) {
+	  if (userTypeList[i].checked) {
+		  param.userType = userTypeList[i].value;
+		  break;
+	  }	
+	}
+	
+	post('login.json', param, function(jsonText) {
+		var ajaxResult = JSON.parse(jsonText);
+		console.log(ajaxResult);
+	});
+}
+
+/*
+get('list.json', function(jsonText) {
+  var ajaxResult = JSON.parse(jsonText);
+  var status = ajaxResult.status;
+  
+  if (status != "success")
+	  return;
+  
+  var list = ajaxResult.data;
+  var tbody = document.querySelector('#list-table > tbody');
+  
+  for (var student of list) {
+	  var tr = document.createElement("tr");
+	  tr.innerHTML = "<tr><td>" + 
+	    student.memberNo + "</td><td><a class='name-link' href='#' data-no='" + 
+	    student.memberNo + "'>" + 
+	    student.name + "</a></td><td>" + 
+	    student.tel + "</td><td>" + 
+	    student.working + "</td><td>" +
+	    student.grade + "</td><td>" +
+	    student.schoolName + "</td></tr>";
+	  tbody.appendChild(tr);  
+  }
+  
+	// 학생 목록에서 이름 링크에 click 이벤트를 처리한다.
+	var al = document.querySelectorAll('.name-link');
+	for (var a of al) {
+		a.onclick = function(event) {
+			event.preventDefault();
+			location.href = 'view.html?memberNo=' + this.getAttribute("data-no");
+		}
+	}
+});
+*/
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+    
