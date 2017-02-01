@@ -46,7 +46,7 @@ body {
 <tr><th>전화</th><td><input id='tel' type='text'></td></tr>
 <tr><th>재직여부</th><td>
   <input type='radio' id='working' name='working' value='true'>재직중 
-  <input type='radio' id='not-working' name='working' value='false'>실업/미취업</td></tr>
+  <input type='radio' id='not-working' name='working' value='false' checked>실업/미취업</td></tr>
 <tr><th>최종학력</th><td>
 	<select id='grade'>
 	  <option value='고졸' >고졸</option>
@@ -152,7 +152,7 @@ function prepareViewForm() {
     	  }
     	  location.href = 'main.html';
     });
-  }
+  };
 	
 } // prepareViewForm()
 
@@ -162,6 +162,27 @@ function prepareNewForm() {
   for (var i = 0; i < tags.length; i++) {
     tags[i].style.display = 'none';
   }
+  
+  document.querySelector('#add-btn').onclick = function() {
+	    var param = {
+	        "name": document.querySelector('#name').value,
+	        "tel": document.querySelector('#tel').value,
+	        "email": document.querySelector('#email').value,
+	        "password": document.querySelector('#password').value,
+	        "working": document.querySelector('#working').checked,
+	        "grade": document.querySelector('#grade').value,
+	        "schoolName": document.querySelector('#school-name').value
+	    };
+	    
+	    post('add.json', param, function(jsonText) {
+	        var ajaxResult = JSON.parse(jsonText);
+	        if (ajaxResult.status != "success") {
+	          alert(ajaxResult.data);
+	          return;
+	        }
+	        location.href = 'main.html';
+	    });
+	  };
 }
 
 // 목록 버튼을 클릭했을 때 호출될 함수(이벤트 핸들러) 등록!

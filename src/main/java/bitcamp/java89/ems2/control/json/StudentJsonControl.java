@@ -40,10 +40,10 @@ public class StudentJsonControl {
   }
   
   @RequestMapping("/student/add")
-  public String add(Student student, MultipartFile photo) throws Exception {
+  public AjaxResult add(Student student, MultipartFile photo) throws Exception {
     
     // 페이지 컨트롤러는 입력 파라미터 값을 가공하여 모델 객체에게 전달하는 일을 한다.
-    if (photo.getSize() > 0) { 
+    if (photo != null && photo.getSize() > 0) { 
       String newFilename = MultipartUtil.generateFilename();
       photo.transferTo(new File(sc.getRealPath("/upload/" + newFilename)));
       student.setPhotoPath(newFilename);
@@ -51,7 +51,7 @@ public class StudentJsonControl {
     
     studentService.add(student);
 
-    return "redirect:list.do";
+    return new AjaxResult(AjaxResult.SUCCESS, "등록 성공입니다.");
   }
 
   @RequestMapping("/student/delete")
