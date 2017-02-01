@@ -77,7 +77,14 @@ document.querySelector('#login-btn').onclick = function() {
 	
 	post('login.json', param, function(jsonText) {
 		var ajaxResult = JSON.parse(jsonText);
-		console.log(ajaxResult);
+		
+		if (ajaxResult.status == "success") {
+			location.href = "../student/main.html";	
+			return;
+		}
+		
+		alert(ajaxResult.data);
+		
 	});
 }
 

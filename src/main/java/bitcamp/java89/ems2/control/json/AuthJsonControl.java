@@ -51,9 +51,9 @@ public class AuthJsonControl {
   }
   
   @RequestMapping("/auth/logout")
-  public String logout(HttpSession session) throws Exception {
+  public AjaxResult logout(HttpSession session) throws Exception {
     session.invalidate(); // 기존 세션을 무효화시킨다.
-    return "redirect:loginform.do";
+    return new AjaxResult(AjaxResult.SUCCESS, "로그아웃 성공입니다.");
   }
   
   @RequestMapping("/auth/loginUser")

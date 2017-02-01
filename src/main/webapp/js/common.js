@@ -10,6 +10,12 @@ window.addEventListener("load", function() {
 		if (ajaxResult.status == "fail") { // 로그인 되지 않았으면,
 			// 로그온 상태 출력 창을 감춘다.
 			document.querySelector('#logon-div').style.display = 'none';
+			
+			// 로그인 버튼의 클릭 이벤트 핸들러 등록하기
+			document.querySelector('#login-btn').onclick = function(event) {
+				event.preventDefault()
+				location.href = '../auth/main.html'
+			};
 			return;
 		}
 		
@@ -19,6 +25,14 @@ window.addEventListener("load", function() {
 			'../upload/' + ajaxResult.data.photoPath;
 		document.querySelector('#logon-div span').textContent = 
 			ajaxResult.data.name;
+		
+		// 로그아웃 버튼의 클릭 이벤트 핸들러 등록하기
+		document.querySelector('#logout-btn').onclick = function(event) {
+			event.preventDefault()
+			get('../auth/logout.json', function(jsonText) {
+				location.href = '../auth/main.html'
+			});
+		};
 	  });
 	});
 	
