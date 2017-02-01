@@ -1,63 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='UTF-8'>
-<title>학생관리-목록</title>
-<style type="text/css">
-body {
-  font-family: '맑은 고딕', sans-serif;
-}
-
-#sidebar {
-  color: white;
-  padding: 10px 5px;
-  float: left;
-  margin: 5px 5px 5px 0px;
-}
-
-#sidebar a {
-  color: white;
-  text-decoration: none;
-}
-
-#content {
-  margin-left: 200px;
-}
-
-#footer {
-  clear: left;
-}
-</style>
-</head>
-<body>
-
-<div id='header' style='background-color:gray; height:40px;position:relative;'></div>
-
-<div id='sidebar' style='background-color:Navy; width:180px; height:400px;'></div>
-
-<div id="content">
-<h1>학생 정보</h1>
-<a href='form.do'>추가</a><br>
-<table id='list-table' border='1'>
-<thead>
-	<tr>
-	  <th>회원번호</th>
-	  <th>이름</th>
-	  <th>전화</th>
-	  <th>재직</th>
-	  <th>최종학력</th>
-	  <th>학교명</th>
-	</tr>
-<thead>
-<tbody></tbody>
-</table>
-</div>
-
-<div id='footer' style='background-color:gray; height:20px; margin-top:20px;'></div>
-
-<script src="../js/bit.js"></script>
-<script src="../js/common.js"></script>
-<script>
 //학생 목록 가져와서 tr 태그를 만들어 붙인다.
 get('list.json', function(jsonText) {
 	/* @RestController 페이지 컨트롤러의 메서드가 리턴한 값은 
@@ -96,17 +36,13 @@ get('list.json', function(jsonText) {
 	}
 });
 
-</script>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-    
+// 추가 버튼에 클릭 이벤트 핸들러(리스너) 등록하기
+document.querySelector('#new-btn').onclick = function(event) {
+	//a 태그를 클릭하면 기본으로 href에 설정된 URL을 요청한다.
+	//이 기본 행동을 막아야 한다.
+	event.preventDefault(); 
+	
+	// 다음과 같이 자바스크립트 명령으로 화면을 이동하면, 
+	// 캐시된 파일이 로딩되지 않고 정상적으로 자바스크립트를 실행한다.
+	location.href = 'view.html';
+};
