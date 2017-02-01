@@ -9,6 +9,7 @@
   - StudentJsonControl, ManagerJsonControl, TeacherJsonControl, MemberJsonControl
 - HTML 생성
   - /webapp/student/main.html 생성
+  - /webapp/student/view.html 생성
 
 ## 2.9 - 클라이언트에서 JSP를 직접 접근하지 못하게 막아야 한다. 
 - JSP 파일을 WEB-INF 밑으로 옮긴다.
