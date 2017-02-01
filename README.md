@@ -16,6 +16,10 @@
   - /webapp/header.html
   - /webapp/footer.html
   - /webapp/sidebar.html
+- 설정 파일 
+  - /webapp/WEB-INF/web.xml 변경 : json 요청 처리 프론트 컨트롤러 추가
+  - /webapp/WEB-INF/conf/json-servlet.xml 추가
+  - /webapp/WEB-INF/conf/dispatcher-servlet.xml 변경
 
 ## 2.9 - 클라이언트에서 JSP를 직접 접근하지 못하게 막아야 한다. 
 - JSP 파일을 WEB-INF 밑으로 옮긴다.
