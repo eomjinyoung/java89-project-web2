@@ -12,18 +12,10 @@ if (memberNo > 0) {
 
 function prepareViewForm() {
 	// 등록 버튼은 감춘다.
-	var tags = document.querySelectorAll('.new-form');
-	for (var i = 0; i < tags.length; i++) {
-		tags[i].style.display = 'none';
-	}
+	$('.new-form').css('display', 'none');
 	
 	//학생 목록 가져와서 tr 태그를 만들어 붙인다.
-	get('detail.json?memberNo=' + memberNo, function(jsonText) {
-		/* @RestController 페이지 컨트롤러의 메서드가 리턴한 값은 
-	   * AjaxResult의 프로퍼티 값으로 JSON 문자열을 만든다.
-	   * 따라서 status나 data 프로퍼티를 바로 꺼내면 된다.
-	   */
-	  var ajaxResult = JSON.parse(jsonText);
+	getJSON('detail.json?memberNo=' + memberNo, function(ajaxResult) {
 	  var status = ajaxResult.status;
 	  
 	  if (status != "success") {
@@ -34,17 +26,17 @@ function prepareViewForm() {
 	  var student = ajaxResult.data;
 	  console.log(student);
 	  
-	  document.querySelector('#email').value = student.email;
-	  document.querySelector('#name').value = student.name;
-	  document.querySelector('#tel').value = student.tel;
+	  $('#email').val(student.email);
+	  $('#name').val(student.name);
+	  $('#tel').val(student.tel);
 	  if (student.working) {
-	    document.querySelector('#working').checked = 'checked';
+	    $('#working').attr('checked', 'checked');
 	  } else {
-		  document.querySelector('#not-working').checked = 'checked';
+		$('#not-working').attr('checked', 'checked');
 	  }
-	  document.querySelector('#grade').value = student.grade;
-	  document.querySelector('#school-name').value = student.schoolName;
-	  document.querySelector('#photo-img').src = "../upload/" + student.photoPath;
+	  $('#grade').val(student.grade);
+	  $('#school-name').val(student.schoolName);
+	  $('#photo-img').attr('src', '../upload/' + student.photoPath);
 	});
 	
 	// 삭제, 변경 버튼을 클릭 했을 때 호출될 함수(클릭 이벤트 핸들러) 등록

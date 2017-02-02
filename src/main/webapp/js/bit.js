@@ -14,6 +14,7 @@ var bit = function(selector) {
 				this[i].appendChild(childs[j]);
 			}
 		}
+		return this;
 	};
 	
 	// 2) 목록에서 각 태그의 innerHTML 값을 설정한다.
@@ -32,6 +33,7 @@ var bit = function(selector) {
 				parents[i].appendChild(this[j]);
 			}
 		}
+		return this;
 	};
 	
 	// 4) 목록에서 각각의 태그를 꺼내 클릭 이벤트 핸들러를 등록한다.
@@ -39,8 +41,34 @@ var bit = function(selector) {
 		for (var i = 0; i < this.length; i++) {
 			this[i].addEventListener('click', cb);
 		}
+		return this;
 	};
 	
+	// 5) 목록에서 태그를 꺼내 스타일을 지정한다.
+	tags.css = function(propName, value) {
+		for (var i = 0; i < this.length; i++) {
+			this[i].style[propName] = value;
+		}
+		return this;
+	};
+	
+	// 6) 목록에서 태그를 꺼내 속성을 추가한다.
+	tags.attr = function(propName, value) {
+		for (var i = 0; i < this.length; i++) {
+			this[i].setAttribute(propName, value);
+		}
+		return this;
+	};
+	
+	// 7) 목록에서 태그를 꺼내 값을 추가한다.
+	tags.val = function(value) {
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].value) {
+				
+			}
+		}
+		return this;
+	}
 	
 	
 	return tags;
