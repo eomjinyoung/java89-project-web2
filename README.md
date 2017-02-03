@@ -1,5 +1,13 @@
 # java89-project-web2
 
+## 3.5 - npm을 이용하여 프론트 엔드 라이브러리 관리하기
+1) nodejs 설치한다.
+2) 명령창에서 /webapp 폴더로 이동한다.
+3) npm 설정 파일(package.json)을 만든다.
+   > npm init
+
+   
+
 ## 3.4.1 - jQuery 적용2 - 로컬 웹서버 다운로드 방식
 
 ## 3.4 - jQuery 적용
