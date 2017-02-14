@@ -1,5 +1,9 @@
 # java89-project-web2
 
+## 3.8 - AJAX 파일 업로드 적용
+1) jQuery file-upload 자바스크립트 라이브러리 추가
+2) 
+
 ## 3.7 - handlebars HTML 템플릿 엔진 적용
 1) 테이블에 삽입될 tr 태그 템플릿을 정의한다.
 2) handlebars 엔진을 사용하여 tr 태그를 자동 생성한다.

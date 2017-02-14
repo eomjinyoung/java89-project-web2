@@ -10,21 +10,8 @@ $('#photo').fileupload({
     previewMaxHeight: 800,  // 미리보기 이미지 높이 
     previewCrop: true,      // 미리보기 이미지를 출력할 때 원본에서 지정된 크기로 자르기
     done: function (e, data) { // 서버에서 응답이 오면 호출된다. 각 파일 별로 호출된다.
-    	console.log('done()...');
-    	console.log(data.result);
         $('#photo-path').val(data.result.data[0]);
-    }, 
-    processalways: function(e, data) {
-        console.log('fileuploadprocessalways()...');
-        var img = $('#photo-img');
-        if (!img.attr('src')) {
-        	console.log('미리보기 처리...');
-	        var canvas = data.files[0].preview;
-	        var dataURL = canvas.toDataURL();
-	        img.attr('src', dataURL).css('width', '100px');
-	        $('#photo-label').css('display', '');
-        }
-    } 
+    }
 });
 
 try {
