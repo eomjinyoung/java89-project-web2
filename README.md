@@ -2,7 +2,9 @@
 
 ## 3.8 - AJAX 파일 업로드 적용
 1) jQuery file-upload 자바스크립트 라이브러리 추가
-2) 
+2) webapp/student/view.html, view.js 변경
+3) 파일 업로드를 처리할 CommonJsonControl.java 추가
+4) StudentJsonControl.java 변경
 
 ## 3.7 - handlebars HTML 템플릿 엔진 적용
 1) 테이블에 삽입될 tr 태그 템플릿을 정의한다.
