@@ -13,7 +13,7 @@ $('#submit-btn').click(function() {
 		userType: $('input[name=user-type]:checked').val()
 	};
 	
-	$.post('login.json', param, function(ajaxResult) {
+	$.post(serverRoot + '/auth/login.json', param, function(ajaxResult) {
 		if (ajaxResult.status == "success") {
 			location.href = "../student/main.html";	
 			return;
