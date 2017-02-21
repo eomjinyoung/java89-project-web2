@@ -1,5 +1,8 @@
 # java89-project-web2
 
+## 3.9 - 서버루트 주소와 클라이언트루트 주소 별도 관리
+- context.js 파일 추가
+
 ## 3.8 - AJAX 파일 업로드 적용
 1) jQuery file-upload 자바스크립트 라이브러리 추가
 2) webapp/student/view.html, view.js 변경
