@@ -1,5 +1,5 @@
 $('#photo').fileupload({
-    url: '../common/fileupload.json', // 서버에 요청할 URL
+    url: serverRoot + '/common/fileupload.json', // 서버에 요청할 URL
     dataType: 'json',         // 서버가 보낸 응답이 JSON임을 지정하기
     sequentialUploads: true,  // 여러 개의 파일을 업로드 할 때 순서대로 요청하기.
     singleFileUploads: false, // 한 요청에 여러 개의 파일을 전송시키기. 기본은 true.
@@ -44,7 +44,7 @@ function prepareViewForm() {
 	$('.new-form').css('display', 'none');
 	
 	//학생 목록 가져와서 tr 태그를 만들어 붙인다.
-	$.getJSON('detail.json?memberNo=' + memberNo, function(ajaxResult) {
+	$.getJSON(serverRoot + '/student/detail.json?memberNo=' + memberNo, function(ajaxResult) {
 	  var status = ajaxResult.status;
 	  
 	  if (status != "success") {
@@ -71,7 +71,7 @@ function prepareViewForm() {
 	
 	// 삭제, 변경 버튼을 클릭 했을 때 호출될 함수(클릭 이벤트 핸들러) 등록
 	$('#delete-btn').click(function() {
-	  $.getJSON('delete.json?memberNo=' + memberNo, function(ajaxResult) {
+	  $.getJSON(serverRoot + '/student/delete.json?memberNo=' + memberNo, function(ajaxResult) {
 		  if (ajaxResult.status != "success") { 
 			  alert(ajaxResult.data);
 			  return;
@@ -93,7 +93,7 @@ function prepareViewForm() {
     		"photoPath": $('#photo-path').val()
 	    };
 	    
-	    $.post('update.json', param, function(ajaxResult) {
+	    $.post(serverRoot + '/student/update.json', param, function(ajaxResult) {
 	    	if (ajaxResult.status != "success") {
 	    		alert(ajaxResult.data);
 	    		return;
@@ -121,7 +121,7 @@ function prepareNewForm() {
     		"photoPath": $('#photo-path').val()
 	    };
     	console.log(param);
-	    $.post('add.json', param, function(ajaxResult) {
+	    $.post(serverRoot + '/student/add.json', param, function(ajaxResult) {
 	        if (ajaxResult.status != "success") {
 	          alert(ajaxResult.data);
 	          return;

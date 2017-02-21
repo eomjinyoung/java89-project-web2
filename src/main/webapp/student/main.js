@@ -1,5 +1,5 @@
 //학생 목록 가져와서 tr 태그를 만들어 붙인다.
-$.getJSON('list.json', function(ajaxResult) {
+$.getJSON(serverRoot + '/student/list.json', function(ajaxResult) {
   var status = ajaxResult.status;
   
   if (status != "success")
