@@ -1,5 +1,6 @@
 package bitcamp.java89.ems2.control.json;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import bitcamp.java89.ems2.domain.Student;
@@ -20,9 +22,26 @@ public class StudentJsonControl {
   @Autowired StudentService studentService;
   
   @RequestMapping("/student/list")
-  public AjaxResult list() throws Exception {
-    List<Student> list = studentService.getList();
-    return new AjaxResult(AjaxResult.SUCCESS, list);
+  public AjaxResult list(
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="5") int pageSize) throws Exception {
+    
+    if (pageNo < 1) {
+      pageNo = 1;
+    }
+    
+    if (pageSize < 5 || pageSize > 20) {
+      pageSize = 5;
+    }
+    
+    List<Student> list = studentService.getList(pageNo, pageSize);
+    int totalCount = studentService.getSize();
+    
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("list", list);
+    resultMap.put("totalCount", totalCount);
+    
+    return new AjaxResult(AjaxResult.SUCCESS, resultMap);
   }
   
   @RequestMapping("/student/detail")

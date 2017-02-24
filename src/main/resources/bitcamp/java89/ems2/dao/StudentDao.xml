@@ -34,7 +34,14 @@
     where s.sno=#{value}
   </select>
   
-  <select id="getList" resultMap="student-map">
+  <select id="countAll" resultType="int">
+    select 
+      count(*)
+    from stud s
+      left outer join memb m on s.sno=m.mno
+  </select>
+  
+  <select id="getList" resultMap="student-map" parameterType="map">
     select 
       m.mno, 
       m.name, 
@@ -46,6 +53,8 @@
       s.path
     from stud s
       left outer join memb m on s.sno=m.mno
+    order by m.name
+    limit #{startRowIndex}, #{rowSize}
   </select>
   
   <select id="getOne" parameterType="int" resultMap="student-map">
